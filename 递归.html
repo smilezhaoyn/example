@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+function sum(num){
+    if(num<1){
+        return 0;
+    }
+    if(num%3==0 && num%5==0){
+        return num + sum(num-1) 
+    }else{
+        return sum(num-1)
+    }
+
+}
+
+let total = sum(100);
+console.log(total)
+
+
+</script>  
+</body>
+</html>

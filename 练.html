@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 300px;
+    border: 1px solid red;
+}
+
+</style>
+</head>
+<body>
+属性名：<input type="text" id="txt1">
+属性值：<input type="text" id="txt2">
+<button id="btn">点击</button>
+<div id="box"></div>
+<script>
+   const txt1 = document.getElementById('txt1');
+   const txt2 = document.getElementById('txt2');
+   const btn = document.getElementById('btn');
+   const box = document.getElementById('box'); 
+   btn.onclick = function(){
+       let a = txt1.value;
+       let b = txt2.value;
+       if(b.indexOf('px') == -1){
+        box.style[a] = b + 'px';
+       }else{
+        box.style[a] = b;
+       }
+       txt1.value = txt2.value = '';
+   }
+    
+    
+</script> 
+</body>
+</html>

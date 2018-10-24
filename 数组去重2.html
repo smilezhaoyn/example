@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+    let arr = [1,'1',7,2,3,6,3,5,6,'1',7,7,7];
+    let arr2 = [];
+    let obj = {};
+    for(let i=0;i<arr.length;i++){
+
+        if(!obj[typeof arr[i] + arr[i]]){
+            arr2.push(arr[i])
+            obj[typeof arr[i] + arr[i]] = true;
+        }
+
+    }
+    console.log(arr2)
+</script>  
+</body>
+</html>

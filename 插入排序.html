@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    let  arr = [12,3,88,100,67,39,20,99];
+    let arr2 = [];
+    arr2.push(arr[0]);
+
+    for(let i =0;i<arr.length;i++){
+        let cur = arr[i];
+        for(let j=arr2.length-1;j>=0;j--){
+            if(cur<arr2[j]){
+                if(j ===0){
+                    arr2.unshift(cur)
+                }
+            
+            }else{
+                    arr2.splice(j+1,0,cur);
+                    break;
+                }
+        }
+
+    }
+
+console.log(arr2)
+</script>
+</body>
+</html>

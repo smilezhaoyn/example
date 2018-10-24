@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+img{
+    transition: 1s;
+}
+
+</style>
+</head>
+<body>
+    <img src="./img/1.jpg" alt="">
+    <img src="./img/2.jpg" alt="">
+    <img src="./img/3.jpg" alt="">
+    <img src="./img/4.jpg" alt="">
+<script>
+    let timer = null;
+    let num = -1;
+    let imgs = document.getElementsByTagName('img');
+    timer = setInterval(function(){
+        num++
+       
+        console.log(num)
+        imgs[num].style.opacity = 0;
+        if(num>=3){clearInterval(timer)}
+        
+    },1000) 
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div{
+    width: 300px;
+    height: 300px;
+    border: 1px solid #000;
+    display: none;
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
+.ys{
+    background: yellow;
+}
+
+</style>
+</head>
+<body>
+<button class="ys">按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<div class="show">按钮1按钮1按钮1按钮1按钮1按钮1按钮1</div>
+<div>按钮2按钮2按钮2按钮2按钮2按钮2</div>
+<div>按钮3按钮3按钮3按钮3按钮3按钮3按钮3按钮3</div>
+<script>
+
+    let btns = document.getElementsByTagName('button');
+    let divs = document.getElementsByTagName('div');
+    let btn = btns[0];
+    for(let i = 0;i<btns.length;i++){
+        btns[i].index = i;
+        btns[i].onclick =function(){
+            btn.className = '';
+            divs[btn.index].className = '';
+            this.className = 'ys';
+            divs[this.index].className = 'show';
+            btn = this;
+        }
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function sun(){
+        let totel = 0;
+        for(let i=0;i<arguments.length;i++){
+            let cur = Number(arguments[i]);  //强制类型转换为number
+            if(!isNaN(cur)){
+                totel += cur;
+            }
+        }
+        return totel;
+    }
+    sun(2,5,9,'5',null,[],10)
+    // console.log(totel)
+    console.log(sun(2,5,9,'5',null,[],10))
+
+</script>   
+</body>
+</html>

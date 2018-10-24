@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+
+ul { margin:5px 0 0 0; padding:0; list-style:none; width:300px; background:rgb(236, 142, 142); }
+li {border-left:1px solid rgb(195, 70, 70); border-bottom:1px solid rgb(195, 70, 70);
+    border-top:1px solid rgb(195, 70, 70); border-right:1px solid rgb(195, 70, 70);
+    line-height:28px; text-indent:20px; font-family:arial;
+    cursor:pointer; border-radius:4px; margin-bottom:3px; color:#6f6f7a; transition:0.3s; }
+img { width:400px; position:absolute; top:33px; 
+    left:309px; border-radius:8px; display:none;  }
+li:hover { border-right:1px solid #fff; 
+    border-top:1px solid #999; border-bottom:1px solid #fff;
+     border-left:1px solid #999;  background:#6e697a; color:#fff; }
+
+
+
+
+</style>
+</head>
+<body>
+    <input type="button" value="增加" id="zj">
+    <input type="button" value="减少" id="js">
+    <ul id="ul"></ul>
+    <img src="img/1.jpg" alt="" id="img">
+<script>
+    let btns = document.getElementsByTagName('input');
+    let arr = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg']
+    let zj = document.getElementById('zj');
+    let js = document.getElementById('js');
+    let ul = document.getElementById('ul');
+    let html = '';
+    let attr = '';
+    let num =-1;
+
+    zj.onclick = function(){
+        num++;
+        if(num>arr.length-1){
+            num = arr.length-1;
+        } else{
+            html += `<li>${arr[num]}</li>`;
+           
+            ul.innerHTML = html;
+            pic();
+        }
+        
+            
+    }
+    //点击li出来一张图片
+
+    function pic(){
+        let lis = document.getElementsByTagName('li');
+        for(let  i=0;i<lis.length;i++){
+            lis[i].onclick = function(){
+                // console.log(this.innerHTML)
+                img.src = this.innerHTML;
+                // console.log(img.src)
+                img.style.display =  'block';
+            }
+        }
+    }
+    
+    js.onclick = function(){
+        num --;
+        console.log(num)
+       
+        ul.innerHTML = '';
+        html = '';
+        // console.log(num)
+        for(let j = 0;j<=num;j++){
+            html += `<li>${arr[j]}</li>`;  
+            console.log(html)
+        }
+       
+        if(num>0){img.src = arr[num-1]}
+        ul.innerHTML = html;
+
+        if(num<0){
+            num=0;
+            if(num = -1){
+            img.style.display = 'none';
+        }
+        }
+        pic();
+        
+
+
+    }
+    
+</script>
+</body>
+</html>

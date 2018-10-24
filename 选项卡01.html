@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.show{
+    display: block;
+    
+}
+.hide{
+    display: none;
+}
+.ys{
+    background: yellow;
+}
+div{
+    display: none;
+    border: 1px solid #000;
+    width: 300px;
+    height: 300px;
+}
+
+</style>
+</head>
+<body>
+    <button class="ys">01</button>
+    <button>02</button>
+    <button>03</button>
+    <div class="show">010101010101</div>
+    <div>0202020202020</div>
+    <div>030303030605000</div>
+<script>
+let btns = document.getElementsByTagName('button');
+let divs = document.getElementsByTagName('div');
+    for(let i =0;i<btns.length;i++){
+        btns[i].index = i;
+    btns[i].onclick =function(){
+        for(let j =0;j<btns.length;j++){
+            btns[j].className = '';
+            divs[j].className = '';
+        }
+        btns[this.index].className = 'ys';
+        divs[this.index].className = 'show';
+    }
+    }
+
+</script>
+</body>
+</html>

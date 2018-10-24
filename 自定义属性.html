@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<input type="button" value="第一个（0）">  
+<input type="button" value="第二个（0）">  
+<input type="button" value="第三个（0）">  
+
+
+<script>
+    const btn = document.getElementsByTagName('input');
+    for(let i=0;i<btn.length;i++){
+        btn[i].index = i;
+        btn[i].onclick = function(){
+            this.index ++;
+            if(this.index > 6){
+                this.disabled = true;
+            }else{
+                this.value = `第一个（${this.index}）`
+            }
+            
+        }
+
+    }
+
+
+
+</script>
+</body>
+</html>

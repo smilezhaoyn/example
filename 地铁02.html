@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.red{
+    color: red;
+}
+
+</style>
+</head>
+<body>
+<button id="btn1">上一站</button>
+<button id="btn2">下一站</button> 
+<ul id="ul"></ul>
+
+<script>
+
+let arr = ['西直门','大钟寺','五道口','上地','西二旗','龙泽','回龙观','霍营','立水桥','东直门'];
+let num =0;
+lis = '';
+const ul = document.getElementById('ul');
+let btn1 = document.getElementById('btn1');
+let btn2 = document.getElementById('btn2');
+let len = arr.length;
+
+for(let i=0;i<len;i++){
+    lis += `<li class="${i==0?'red':''}">${arr[i]}</li>`
+}
+ul.innerHTML = lis;
+let list = document.getElementsByTagName('li');
+btn2.onclick = function(){
+    num ++;
+    fn();
+}
+function fn(){
+    for(let i=0;i<list.length;i++){
+        list[i].className = '';
+    }
+    list[num %= list.length].className = 'red';
+}
+btn1.onclick = function(){
+    num--;
+    if(num<0){
+        num = list.length-1;
+    }
+    fn();
+}
+</script>
+</body>
+</html>

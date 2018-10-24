@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+
+    let ming = {
+        home:'杭州',
+        city:'北京',
+        mm:[
+            {
+                name:'小红',
+                age:10,
+                job:'学生'
+        },{
+            name:'等等',
+            age:18,
+            job:'学生'
+        }
+        ]
+    }
+
+let p = '<p>小明:'
+
+for(let attr in ming){
+    if(attr == 'mm'){
+        p +='妹妹' + ming[attr].length + '个';
+
+    }else{
+        p += attr + '是' + ming[attr] + ',';
+    }
+
+}
+
+p += '</p>'
+box.innerHTML = p;
+let ul = '<ul>';
+    let mm = ming['mm'];
+    for(let i=0;i<mm.length;i++){
+        ul += `<li>${mm[i]['name']}:年龄${mm[i]['age']},职业:${mm[i]['job']}</li>`
+    }
+    ul += '</ul>';
+
+    box.innerHTML += ul;
+</script>
+</body>
+</html>
