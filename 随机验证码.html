@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#box{
+    width: 120px;
+    height: 60px;
+    border: 1px solid #000;
+    border-radius: 10%;
+    margin: 200px auto;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+
+}
+
+
+</style>
+</head>
+<body>
+<div id="box"></div>
+
+<script>
+    let box = document.getElementById('box');
+    function code(){
+        let str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let chang = str.length;
+        let html = '';
+        let num =0;
+        while(num<4){
+            let suij = Math.round(Math.random()*chang);  //取随机数，并且四舍五入，保留整数
+            let cur = str[suij];   //从str中取出随机数
+            if(html.toUpperCase().indexOf(cur.toUpperCase())===-1){
+                html += cur;
+                num++;
+            }
+        }
+        box.innerHTML = html;
+    }
+    box.onclick =code;
+    code();
+
+</script>
+</body>
+</html>

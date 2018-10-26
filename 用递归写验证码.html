@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<button id="btn">生成随机验证码</button> 
+<p id="p"></p>
+
+
+<script>
+
+    let str = `1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM`;
+    let arr = [];
+    let he = str.length;
+    btn.onclick = function(){
+        arr.length = 0;
+        sum();
+        p.innerHTML = arr.join('');
+    }
+    function sum(){
+        if(arr.length>=4){return;}
+        let s = str[Math.floor(Math.random()* he)];
+        if(!arr.includes(s)){
+            arr.push(s);
+            }
+        sum();
+        
+    }
+
+
+</script>
+</body>
+</html>
