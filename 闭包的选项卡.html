@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.active{
+    background: yellow;
+}
+.show{
+    display:block;
+}
+div{
+    width: 300px;
+    height: 300px;
+    border: 1px solid #000;
+    display: none;
+
+}
+
+</style>
+</head>
+<body>
+<input type="button" value="按钮一" class="active">  
+<input type="button" value="按钮二">  
+<input type="button" value="按钮三">  
+<div class="show">11111111111</div>
+<div>222222222</div>
+<div>2333333333333333</div>
+
+<script>
+    let btns = document.getElementsByTagName('input');
+    let divs = document.getElementsByTagName('div');
+
+//普通的选项卡
+    // for(var i=0;i<btns.length;i++){
+    //     btns[i].index = i;
+    //     btns[i].onclick = function(){
+    //         for(let  j=0;j<btns.length;j++){
+    //             btns[j].className = '';
+    //             divs[j].className = '';
+    //         }
+    //         this.className = 'active';
+    //         divs[this.index].className = 'show';
+    //         // console.log(this.index)
+
+    //     }
+
+    // }
+
+//闭包写的选项卡
+    // for(var i=0;i<btns.length;i++){
+    //     (function(a){
+    //         btns[a].onclick = function(){
+    //             for(let j=0;j<btns.length;j++){
+    //                 btns[j].className = '';
+    //                 divs[j].className = '';
+    //             }
+    //             btns[a].className = 'active';
+    //             divs[a].classList = 'show';
+    //         }
+    //     })(i)
+
+
+    // }
+
+//闭包的第二种写法
+
+    for(let i=0;i<btns.length;i++){
+        btns[i].onclick =(function(a){
+            return function(){
+                for(let j=0;j<btns.length;j++){
+                    btns[j].className = '';
+                    divs[j].className = '';
+                }
+                btns[a].className = 'active';
+                divs[a].classList = 'show';
+            }
+        })(i)
+    }
+
+</script>
+</body>
+</html>
