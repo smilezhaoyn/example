@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #box{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: red;
+        margin-top: 50px;
+        position: relative;
+        /* left:60px */
+           }
+</style>
+</head>
+<body>
+    <button id="btn">抖起来</button>
+    <div id="box"></div>
+
+<script>
+    let arr = [-10,10,-8,8,-6,6,-4,4,-2,2,0];
+    let num =0;
+    let timer = null;
+    btn.onclick = function(){
+        timer = setInterval(function(){
+            box.style.left = arr[num] + 'px';
+            num ++;
+            // console.log(num)
+            console.log(box.style.left)
+        if(num>=arr.length){
+            clearInterval(timer);
+            num = 0;
+        }
+        // console.log(0)
+        },16)
+    }
+
+
+</script>
+</body>
+</html>
