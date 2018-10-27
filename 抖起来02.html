@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left:0;
+    top:50px;
+    border-radius: 50% 50%;
+}
+</style>
+</head>
+<body>
+    <button id="btn">抖起来</button>
+    <div id="box"></div>
+
+<script>
+
+    // btn.onclick = function(){
+    //     Dou(box,'left',function(){
+    //         box.style.transition = '1s';
+    //         box.style.left = '200px';
+    //         setTimeout(function(){
+    //             box.style.transition = 'none';
+    //             Dou(box,'top')
+    //         },16)
+    //     },100,2)
+
+    // }
+
+    btn.onclick = function(){
+        Dou(box,'left',100,20)
+    }
+    /*
+    box 谁抖
+    attr 属性 那个 方向
+    callback 抖完之后的回调函数
+    n 抖频率的总共值
+    n1 抖频率的间隔值
+    */
+    function Dou(box,attr,n,n1,callback){
+        let arr = [];
+        let timer = null;
+        let num =0;
+        //元素最初的原始的位置在哪里  chus //初始
+        let chus = parseInt(getComputedStyle(box)[attr]);
+        for(let i =n;i>0;i-=n1){
+            arr.push(-i,i);  //得到arr中频率中的数组
+        }
+        arr.push(0);
+
+        timer = setInterval(function(){
+            box.style[attr] = chus + arr[num] + 'px';
+            num ++;
+            if(num >=arr.length){
+                clearInterval(timer);
+                num = 0;
+                callback && callback();
+            }
+        },16)
+    }
+</script>
+</body>
+</html>

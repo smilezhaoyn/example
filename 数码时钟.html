@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding:0;
+    list-style:none;
+}
+li{
+    float: left;
+}
+</style>
+</head>
+<body>
+    <ul>
+            <li>
+                <img src="img1/0.png" alt="">
+            </li>
+            <li>
+                <img src="img1/0.png" alt="">
+            </li>
+            <li>
+                    <img src="img1/second1.png" alt="">
+            </li>
+            <li>
+                    <img src="img1/0.png" alt="">
+            </li>
+            <li>
+                <img src="img1/0.png" alt="">
+            </li>
+            <li>
+                    <img src="img1/second1.png" alt="">
+            </li>
+            <li>
+                    <img src="img1/0.png" alt="">
+            </li>
+            <li>
+                <img src="img1/0.png" alt="">
+            </li>
+        </ul>
+
+<script>
+    const imgs = document.querySelectorAll('img');
+
+    let newDate = new Date('2018 10 26 22:30');
+
+
+    function fn(){
+        let nowDate = new Date;
+        let t = (newDate - nowDate)/1000; //得到了秒数
+        let d = Math.floor(t/86400);  // 得到天数
+        t %= 86400;
+        let h = Math.floor(t/3600);   //得到小时
+        t %=3600;
+        let m = Math.floor(t/60);  //得到分钟
+        t %=60;
+
+        let str = toDOU(h)+':' + toDOU(m) + ':' + toDOU(Math.floor(t))
+        // console.log(str);
+        for(let i=0;i<imgs.length;i++){
+            if(i!=2 && i!=5){
+                imgs[i].src = 'img1/'+ str[i] +'.png';
+            }
+        }
+        
+    }
+    fn();
+    setInterval(fn,1000)
+    function toDOU(n){
+            return n<10?'0'+n:''+n;
+        }
+
+</script>
+</body>
+</html>
