@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击抽</button>
+    <p id="p"></p>
+    <button id="btn2">停</button>
+
+<script>
+    let arr = ['会会','明媚','明明','啊啊啊','321']
+    let timer =null;
+    let num =0;
+    btn.onclick = function(){
+        timer = setInterval(function(){
+            p.innerHTML = arr[num];
+            num ++;
+            num%=arr.length;
+        },60)
+    }
+    btn2.onclick = function(){
+        clearInterval(timer);
+    }
+
+</script>
+</body>
+</html>

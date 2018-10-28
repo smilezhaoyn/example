@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#list li{
+    float: left;
+    background: pink;
+    cursor: pointer;
+    width: 80px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 5px;
+    list-style: none;
+}
+#list li:hover{
+    background: red;
+}
+#list{
+    overflow: hidden;
+    /* border: 1px solid #000; */
+    width: 300px;
+}
+#box{
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    position: absolute;
+    top:40px;
+    left: 0;
+
+}
+#con{
+    position: relative;
+}
+
+
+</style>
+</head>
+<body>
+    <div id="con">
+        <ul id="list">
+                <li>111</li>
+                <li>222</li>
+                <li>333</li>
+            </ul>
+        <div id="box">agegeggg</div>
+    </div>
+
+<script>
+    let pos = [0,80,170];
+    let timer = null;
+    let timer2 = null;
+    let arr = ['111111','22222222','3333333'];
+    const lis = document.querySelectorAll('li');
+    // for(let i = 0;i<lis.length;i++){
+    //     lis[i].onmouseover = function(){
+    //         clearTimeout(timer2);  
+    //         clearTimeout(timer);
+    //         box.style.display = 'block';
+    //         box.innerHTML = arr[i];
+    //         box.style.left = pos[i] + 'px'; 
+          
+    //     }
+    //     lis[i].onmouseout = function(){
+    //         timer = setTimeout(function(){
+    //            box.style.display = 'none';
+    //         },500)
+
+    //     }
+    // }
+
+    // box.onmouseover = function(){
+    //     clearTimeout(timer);
+    //     clearTimeout(timer2);
+    // }
+    // box.onmouseout = function(){
+    //     timer2 = setTimeout(function(){
+    //         box.style.display = 'none';
+    //     },500)
+        
+    // }
+
+</script>
+</body>
+</html>
