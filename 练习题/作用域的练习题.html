@@ -1,0 +1,144 @@
+<!DOCTYPE html><html><head><title>Untitled</title><meta charset='utf-8'><link href='https://cdn.maxiang.io/res-min/themes/marxico.css' rel='stylesheet'><style></style></head><body><div id='preview-contents' class='note-content'>
+                        
+                    
+
+<p>1、</p>
+
+<pre class="prettyprint hljs-dark"><code class="hljs javascript"><div class="hljs-line"> <span class="hljs-number">1.</span><span class="hljs-keyword">if</span> (<span class="hljs-string">'m'</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">window</span>) {
+</div><div class="hljs-line"><span class="hljs-number">2.</span>    <span class="hljs-keyword">var</span> m = m &amp;&amp; <span class="hljs-number">12</span>;
+</div><div class="hljs-line"><span class="hljs-number">3.</span>}
+</div><div class="hljs-line"><span class="hljs-number">4.</span><span class="hljs-built_in">console</span>.log(m);
+</div><div class="hljs-line"><span class="hljs-number">1.</span><span class="hljs-keyword">let</span> n = <span class="hljs-number">10</span>;
+</div><div class="hljs-line"><span class="hljs-number">2.</span><span class="hljs-keyword">if</span> (!(<span class="hljs-string">'n'</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">window</span>)) {
+</div><div class="hljs-line"><span class="hljs-number">3.</span>    <span class="hljs-keyword">let</span> n = n + <span class="hljs-number">30</span>;
+</div><div class="hljs-line"><span class="hljs-number">4.</span>}
+</div><div class="hljs-line"><span class="hljs-number">5.</span><span class="hljs-built_in">console</span>.log(n);
+</div></code></pre>
+
+<p>2、</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs lsl"><div class="hljs-line"><span class="hljs-number">1.</span>let n = <span class="hljs-number">10</span>,
+</div><div class="hljs-line"><span class="hljs-number">2.</span>    m = <span class="hljs-number">20</span>;
+</div><div class="hljs-line"><span class="hljs-number">3.</span>~function (n, m) {
+</div><div class="hljs-line"><span class="hljs-number">4.</span>    let arg = arguments;
+</div><div class="hljs-line"><span class="hljs-number">5.</span>    arg[<span class="hljs-number">0</span>] = n || <span class="hljs-number">100</span>;
+</div><div class="hljs-line"><span class="hljs-number">6.</span>    arg[<span class="hljs-number">1</span>] = m || <span class="hljs-number">200</span>;
+</div><div class="hljs-line"><span class="hljs-number">7.</span>    console.log(n, m);
+</div><div class="hljs-line"><span class="hljs-number">8.</span>}(m);
+</div><div class="hljs-line"><span class="hljs-number">9.</span>console.log(n, m);
+</div><div class="hljs-line"><wbr>
+</div></code></pre>
+
+<p>3、</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs lsl"><div class="hljs-line"><span class="hljs-number">1.</span>let ary = [<span class="hljs-number">12</span>, <span class="hljs-number">23</span>, <span class="hljs-number">34</span>, <span class="hljs-number">45</span>];
+</div><div class="hljs-line"><span class="hljs-number">2.</span>(function (ary) {
+</div><div class="hljs-line"><span class="hljs-number">3.</span>    ary.pop();
+</div><div class="hljs-line"><span class="hljs-number">4.</span>    ary = ary.slice(<span class="hljs-number">0</span>);
+</div><div class="hljs-line"><span class="hljs-number">5.</span>    ary.shift();
+</div><div class="hljs-line"><span class="hljs-number">6.</span>    console.log(ary);
+</div><div class="hljs-line"><span class="hljs-number">7.</span>})(ary);
+</div><div class="hljs-line"><span class="hljs-number">8.</span>console.log(ary);
+</div></code></pre>
+
+<p>4、</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs lsl"><div class="hljs-line"><span class="hljs-number">1.</span>let i = <span class="hljs-number">0</span>;
+</div><div class="hljs-line"><span class="hljs-number">2.</span>let fn = function (n) {
+</div><div class="hljs-line"><span class="hljs-number">3.</span>    i += <span class="hljs-number">2</span>;
+</div><div class="hljs-line"><span class="hljs-number">4.</span>    return function (m) {
+</div><div class="hljs-line"><span class="hljs-number">5.</span>        i += (++n) + (m--);
+</div><div class="hljs-line"><span class="hljs-number">6.</span>        console.log(i);
+</div><div class="hljs-line"><span class="hljs-number">7.</span>    }
+</div><div class="hljs-line"><span class="hljs-number">8.</span>};
+</div><div class="hljs-line"><span class="hljs-number">9.</span>let f = fn(<span class="hljs-number">2</span>);
+</div><div class="hljs-line"><span class="hljs-number">10.</span>f(<span class="hljs-number">3</span>);
+</div><div class="hljs-line"><span class="hljs-number">11.</span>fn(<span class="hljs-number">2</span>)(<span class="hljs-number">3</span>);
+</div><div class="hljs-line"><span class="hljs-number">12.</span>f(<span class="hljs-number">4</span>);
+</div><div class="hljs-line"><span class="hljs-number">13.</span>console.log(i);
+</div></code></pre>
+
+<p>5、</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs javascript"><div class="hljs-line"><span class="hljs-number">1.</span><span class="hljs-keyword">let</span> n = <span class="hljs-number">10</span>,
+</div><div class="hljs-line"><span class="hljs-number">2.</span>    obj = {<span class="hljs-attr">n</span>: <span class="hljs-number">20</span>};
+</div><div class="hljs-line"><span class="hljs-number">3.</span><span class="hljs-keyword">let</span> fn = obj.fn = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+</div><div class="hljs-line"><span class="hljs-number">4.</span>    <span class="hljs-keyword">this</span>.n++;
+</div><div class="hljs-line"><span class="hljs-number">5.</span>    n++;
+</div><div class="hljs-line"><span class="hljs-number">6.</span>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">m</span>) </span>{
+</div><div class="hljs-line"><span class="hljs-number">7.</span>        n += <span class="hljs-number">10</span> + (++m);
+</div><div class="hljs-line"><span class="hljs-number">8.</span>        <span class="hljs-keyword">this</span>.n += n;
+</div><div class="hljs-line"><span class="hljs-number">9.</span>        <span class="hljs-built_in">console</span>.log(n);
+</div><div class="hljs-line"><span class="hljs-number">10.</span>    }
+</div><div class="hljs-line"><span class="hljs-number">11.</span>})(obj.n);
+</div><div class="hljs-line"><span class="hljs-number">12.</span>fn(<span class="hljs-number">10</span>);
+</div><div class="hljs-line"><span class="hljs-number">13.</span>obj.fn(<span class="hljs-number">10</span>);
+</div><div class="hljs-line"><span class="hljs-number">14.</span><span class="hljs-built_in">console</span>.log(n, obj.n);
+</div></code></pre>
+
+<p>6、</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs mipsasm"><div class="hljs-line"><span class="hljs-number">1</span>.let a = {n: <span class="hljs-number">4</span>}<span class="hljs-comment">;</span>
+</div><div class="hljs-line"><span class="hljs-number">2</span>.let <span class="hljs-keyword">b </span>= a<span class="hljs-comment">;</span>
+</div><div class="hljs-line"><span class="hljs-number">3</span>.<span class="hljs-keyword">b.x </span>= a = {n: <span class="hljs-number">10</span>}<span class="hljs-comment">;</span>
+</div><div class="hljs-line"><span class="hljs-number">4</span>.console.log(a.x)<span class="hljs-comment">;</span>
+</div><div class="hljs-line"><span class="hljs-number">5</span>.console.log(<span class="hljs-keyword">b.x);</span>
+</div><div class="hljs-line"><span class="hljs-keyword"></span>
+</div></code></pre>
+
+<p>7、</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs fortran"><div class="hljs-line"><span class="hljs-number">1.</span><span class="hljs-function"><span class="hljs-keyword">function</span></span> C1(<span class="hljs-keyword">name</span>) {
+</div><div class="hljs-line"><span class="hljs-number">2.</span>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">name</span>) this.<span class="hljs-keyword">name</span> = <span class="hljs-keyword">name</span>;
+</div><div class="hljs-line"><span class="hljs-number">3.</span>}
+</div><div class="hljs-line"><span class="hljs-number">4.</span><span class="hljs-function"><span class="hljs-keyword">function</span></span> C2(<span class="hljs-keyword">name</span>) {
+</div><div class="hljs-line"><span class="hljs-number">5.</span>    this.<span class="hljs-keyword">name</span> = <span class="hljs-keyword">name</span>;
+</div><div class="hljs-line"><span class="hljs-number">6.</span>}
+</div><div class="hljs-line"><span class="hljs-number">7.</span><span class="hljs-function"><span class="hljs-keyword">function</span></span> C3(<span class="hljs-keyword">name</span>) {
+</div><div class="hljs-line"><span class="hljs-number">8.</span>    this.<span class="hljs-keyword">name</span> = <span class="hljs-keyword">name</span> || <span class="hljs-string">'join'</span>;
+</div><div class="hljs-line"><span class="hljs-number">9.</span>}
+</div><div class="hljs-line"><span class="hljs-number">10.</span>C1.prototype.<span class="hljs-keyword">name</span> = <span class="hljs-string">'Tom'</span>;
+</div><div class="hljs-line"><span class="hljs-number">11.</span>C2.prototype.<span class="hljs-keyword">name</span> = <span class="hljs-string">'Tom'</span>;
+</div><div class="hljs-line"><span class="hljs-number">12.</span>C3.prototype.<span class="hljs-keyword">name</span> = <span class="hljs-string">'Tom'</span>;
+</div><div class="hljs-line"><span class="hljs-number">13.</span>alert(new C1().<span class="hljs-keyword">name</span> + new C2().<span class="hljs-keyword">name</span> + new C3().<span class="hljs-keyword">name</span>);
+</div></code></pre>
+
+<p>8、 忽略报错对后面代码的影响</p>
+
+<pre class="prettyprint hljs-dark"><code class="hljs javascript"><div class="hljs-line"><span class="hljs-number">1.</span><span class="hljs-keyword">let</span> m = <span class="hljs-number">20</span>;
+</div><div class="hljs-line"><span class="hljs-number">2.</span><span class="hljs-keyword">let</span> Fn = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n, m</span>) </span>{
+</div><div class="hljs-line"><span class="hljs-number">3.</span>    <span class="hljs-keyword">this</span>.n = n;
+</div><div class="hljs-line"><span class="hljs-number">4.</span>    <span class="hljs-keyword">this</span>.aa = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+</div><div class="hljs-line"><span class="hljs-number">5.</span>        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.n + (++m));
+</div><div class="hljs-line"><span class="hljs-number">6.</span>    }
+</div><div class="hljs-line"><span class="hljs-number">7.</span>};
+</div><div class="hljs-line"><span class="hljs-number">8.</span>Fn.prototype.bb = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+</div><div class="hljs-line"><span class="hljs-number">9.</span>    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.n + m);
+</div><div class="hljs-line"><span class="hljs-number">10.</span>};
+</div><div class="hljs-line"><span class="hljs-number">11.</span><span class="hljs-keyword">let</span> f1 = <span class="hljs-keyword">new</span> Fn(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>);
+</div><div class="hljs-line"><span class="hljs-number">12.</span>Fn.prototype = {
+</div><div class="hljs-line"><span class="hljs-number">13.</span>    cc: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+</div><div class="hljs-line"><span class="hljs-number">14.</span>        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.n + m);
+</div><div class="hljs-line"><span class="hljs-number">15.</span>    }
+</div><div class="hljs-line"><span class="hljs-number">16.</span>};
+</div><div class="hljs-line"><span class="hljs-number">17.</span><span class="hljs-keyword">let</span> f2 = <span class="hljs-keyword">new</span> Fn(<span class="hljs-number">30</span>);
+</div><div class="hljs-line"><span class="hljs-number">18.</span><span class="hljs-built_in">console</span>.log(f1.constructor === f2.constructor);
+</div><div class="hljs-line"><span class="hljs-number">19.</span>f1.aa();
+</div><div class="hljs-line"><span class="hljs-number">20.</span>f1.bb();
+</div><div class="hljs-line"><span class="hljs-number">21.</span>f1.cc();
+</div><div class="hljs-line"><span class="hljs-number">22.</span>f2.bb();
+</div><div class="hljs-line"><span class="hljs-number">23.</span>f2.cc();
+</div><div class="hljs-line"><span class="hljs-number">24.</span>f2.__proto__.cc();
+</div></code></pre></div></body></html>
