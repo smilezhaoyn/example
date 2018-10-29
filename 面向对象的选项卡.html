@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ys{
+    background: yellow;
+}
+div{
+ width: 300px;
+ height: 300px;
+ border: 1px solid #000;
+ display: none;
+}
+.show{
+    display: block;
+}
+
+</style>
+</head>
+<body>
+    <button class="ys">按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <div class="show">111111111111</div>
+    <div>22222222222222</div>
+    <div>33333333333333</div>
+
+<script>
+
+    function Tab(){
+        this.btns = document.getElementsByTagName('button');
+        this.divs = document.getElementsByTagName('div');
+        this.timer = null;
+        this.num = 0;
+    }
+    // Tab.prototype.init = function(event){
+    //     this.Events(event);
+    // }
+    // //给每一个按钮加事件
+    // Tab.prototype.Events =function(event){
+    //     let that = this;
+    //     for(let i=0;i<this.btns.length;i++){
+    //         this.btns[i].index = i;
+    //         // console.log(i);
+    //         this.btns[i][event] = function(){
+    //             that.change(this);
+    //             console.log(1);
+    //         }
+    //     }
+    // }
+
+    // //切换
+    // Tab.prototype.change = function(that){
+    //     for(let i=0;i<this.btns.length;i++){
+    //         this.btns[i].className = '';
+    //         this.divs[i].className = '';
+    //     }
+    //     that.className = 'ys';
+    //     this.divs[that.index].className = 'show';
+    // }
+
+    // let t = new Tab();
+    // // t.Events();
+    // t.init('onclick')
+
+
+    Tab.prototype.init = function(event){
+    this.Events(event);
+    this.play();
+    }
+    //给每一个按钮加事件
+    Tab.prototype.Events =function(event){
+        let that = this;
+        for(let i=0;i<this.btns.length;i++){
+            // this.btns[i].index = i;
+            // console.log(i);
+            this.btns[i][event] = function(){
+                that.change(i);
+                console.log(1);
+            }
+        }
+    }
+
+    //切换
+    Tab.prototype.change = function(j){
+        for(let i=0;i<this.btns.length;i++){
+            this.btns[i].className = '';
+            this.divs[i].className = '';
+        }
+        this.btns[j].className = 'ys';
+        this.divs[j].className = 'show';
+    }
+
+    
+
+    Tab.prototype.play = function(){
+    let that = this;
+    this.timer = setInterval(function(){
+        that.num ++;
+        that.change(that.num %= 3);
+    },1000)
+    }
+
+    let t = new Tab();
+    // t.Events();
+    t.init('onclick')
+</script>
+</body>
+</html>
