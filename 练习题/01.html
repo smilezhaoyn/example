@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    // var n =2;
+    // var obj = {
+    //     n : 3,
+    //     fn:(function(n){
+    //         n*=2;
+    //         this.n +=2;
+    //         var n =5;
+    //         return function(m){
+    //             this.n *=2;
+    //             console.log(m + (++n)); 
+    //         }
+    //     })(n)
+    // }
+    // var fn = obj.fn;
+    // fn(3);
+    // obj.fn(3);
+    // console.log(n,obj.n)
+
+    // Function.prototype.say =function(){
+    //     alert('亲爹');
+    // }
+    // fn.prototype.say = function(){
+    //     alert('我才是真的');
+    // }
+    // function fn(){
+    //     say = function(){
+    //      console.log(1)
+    //     }
+    //     return this;
+
+    // }
+    // let f = new fn();
+    // // console.log(f.say())
+    // fn().say();
+
+
+
+
+    // function Foo() {
+    //     getName = function () { alert (1); };
+    //     return this;
+    // }
+    // Foo.getName = function () { alert (2);};
+    // Foo.prototype.getName = function () { alert (3);};
+    // var getName = function () { alert (4);};
+    // function getName() { alert (5);}
+
+    // //请写出以下输出结果：
+    // Foo.getName();// 2
+    // getName();// 4
+    // Foo().getName();//1
+    // getName();// 1
+    // new Foo.getName();// 2
+    // new Foo().getName();// 3
+    // new new Foo().getName();//3
+
+
+
+let m = 20;
+let Fn = function (n, m) {
+    this.n = n;
+    this.aa = function () {
+        console.log(this.n + (++m));
+    }
+};
+Fn.prototype.bb = function () {
+    // console.log(this.n + m);
+    console.log(this);//{bb:function()}
+};
+let f1 = new Fn(10, 20);
+// Fn.prototype = {
+//     cc: function () {
+//         console.log(this.n + m);
+//      }
+// };
+// let f2 = new Fn(30);
+// console.log(f1.constructor === f2.constructor);
+// f1.aa();
+// f1.bb();
+Fn.prototype.bb(); 
+// console.log(f1.__proto__.bb === Fn.prototype.bb)
+// f1.cc();
+// f2.bb();
+// f2.cc();
+// f2.__proto__.cc();
+
+
+
+
+// let i = 0;
+// let fn = function (n) {
+//     i += 2;
+//     return function (m) {
+//         i += (++n) + (m--);
+//         console.log(i);
+//     }
+// };
+// let f = fn(2);
+// f(3);
+// fn(2)(3);
+// f(4);
+// console.log(i);
+
+
+</script>   
+</body>
+</html>
