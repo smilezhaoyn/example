@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .active{
+        background: yellow;
+    }
+    #box div{
+        width: 300px;
+        height: 300px;
+        border:2px solid #000;
+        display: none;
+    }
+    #box .show{
+        display: block;
+
+    }
+
+    
+    </style>
+</head>
+<body>
+    <div id="box">
+    </div>
+<script>
+
+    (function(global,fa){
+        fa(global);
+    })(typeof window === 'undefined'?this:window,function(global,noglobal){
+
+        function Tab(id){
+            this.box = document.getElementById(id);  //这里的id是后边传参的变量
+            //一个obj中放btns内容  放入div中放的内容
+            this.obj = {
+                btns:['新闻','娱乐','生活'],
+                con:['1111111','222222222220','333333333333'],
+                events:'onclick'
+
+            }
+        }
+        //在原型下边写方法
+        Tab.prototype = { //改变指向。
+            constructor:Tab,
+            //init里边调用创建的btn 和div
+            init:function(obj){
+                for(let attr in obj){
+                    this.obj[attr] = obj[attr];
+                    // console.log(this.obj[attr])
+                }
+                this.createBtn(); //调用创建的btn
+                this.createDiv(); //调用创建的div
+                this.events(this.obj.events);  //调用onclick事件
+            },
+
+            //创建btn按钮
+            createBtn:function(){
+                for(let i =0; i<this.obj.btns.length;i++){
+                    let btns = document.createElement('button');
+                    // console.log(btns); //没问题
+                    btns.className = (i == 0)? 'active':'';  //给第一个btn按钮加一个背景
+                    btns.innerHTML = this.obj.btns[i];
+                    // console.log(btns.innerHTML);  //没问题
+                    this.box.appendChild(btns);
+                    // console.log(this.box)
+                    
+                }
+            },
+            //创建div元素
+            createDiv:function(){
+                for(let i=0;i<this.obj.con.length;i++){
+                    let divs = document.createElement('div');
+                    divs.className = (i == 0)?'show':'';
+                    divs.innerHTML = this.obj.con[i];
+                    this.box.appendChild(divs);
+                }
+            },
+            events:function(evName){
+                this.btns = Array.prototype.slice.call(this.box.getElementsByTagName('button'));
+                this.divs = Array.prototype.slice.call(this.box.getElementsByTagName('div'));
+                this.btns.forEach((e,i) => {
+                    e[evName] = () =>{
+                    this.change(i);
+                    }
+                });
+            },
+            change:function(index){
+                this.btns.map((e,i) => {
+                    this.divs[i].className = '';
+                    this.btns[i].className = '';
+                });
+                this.btns[index].className = 'active';
+                this.divs[index].className = 'show';
+
+            }
+
+        }
+        global.Tab = Tab;
+    })
+    let t = new Tab('box');
+    // t.init();
+    t.init({
+        btns:['头条','新闻','娱乐'],
+        con:['头条头条头条','新闻新闻新闻新闻','娱乐娱乐娱乐娱乐娱乐']
+    }
+
+    );
+</script>
+</body>
+</html>

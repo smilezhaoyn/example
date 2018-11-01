@@ -6,20 +6,30 @@
 </head>
 <body>
     <input type="text" id="txt">
-    <button id="btn">查看QQ号</button>
+    <!-- <button id="btn">查看QQ号</button> -->
+    <button id="btn">匹配邮箱</button>
 <script>
-    btn.onclick = function(){
-        //下边是   [1-9]从1-9中提取数字，因为首饰不能为0数字的，
-        // 后边{4,10} 最小是5个数  最多是11个数
-        let qq = /^[1-9]\d{4,10}$/;
-        if(qq.test(txt.value)){
-            alert('是QQ');
-        }else{
-            alert('不好意思，你不是QQ');
-        }
-        txt.value = '';
-    }
+    // btn.onclick = function(){
+    //     //下边是   [1-9]从1-9中提取数字，因为首饰不能为0数字的，
+    //     // 后边{4,10} 最小是5个数  最多是11个数
+    //     let qq = /^[1-9]\d{4,10}$/;
+    //     if(qq.test(txt.value)){
+    //         alert('是QQ');
+    //     }else{
+    //         alert('不好意思，你不是QQ');
+    //     }
+    //     txt.value = '';
+    // }
     
+    btn.onclick = function(){
+        console.log(txt.value)
+        let youx = /^[A-Za-z]\w{5,17}@163.com$/;
+        if(youx.test(txt.value)){
+            alert('是邮箱');
+        }else{
+            alert('不是邮箱');
+        }
+    }
     
 </script>
 </body>
