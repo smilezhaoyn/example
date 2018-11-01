@@ -3,8 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+<style>
+.active{
+    background: yellow;
+}
+#box div{
+    width: 200px;
+    height: 200px;
+    border: 2px solid #000;
+    display: none;
+}
+#box .show{
+    display: block;
+}
+
+</style>
 </head>
 <body>
-    
+    <div id="box"></div>
+<script>
+    (function(global,fa){
+        fa(global);
+    })(typeof Window === 'undefined'?this:window,function(global,noglobal){
+        
+        function Tab(id){
+            this.box = document.getElementById(id);
+            this.obj = {
+                btns:['新闻','娱乐','生活'],
+                con:['新闻新闻','娱乐娱乐娱乐','生活'],
+                events:'onclick'
+            }
+        }
+
+        Tab.prototype = {
+            constructor:Tab,
+            init:function(obj){
+                for(let attr in obj){
+                    this.obj[attr] = obj[attr];
+                }
+                this.createBtn();  //调用新创建的btn
+                this.createDiv();  //调用新创建的div
+                this.events(this.obj.events) //调用点击事件
+            },
+            createBtn:function(){
+                for(let i=0;i<this.obj.btns.length;i++){
+                    let btns = document.createElement('button');
+                    btns.innerHTML = this.obj.btns[i];
+                    this.box.appendChild(btns);
+                    btns.className = (i == 0) ?'active':'';
+                }
+            },
+            createDiv:function(){
+                for(let i=0;i<this.obj.con.length;i++){
+                    let divs = document.createElement('div');
+                    divs.innerHTML = this.obj.con[i];
+                    this.box.appendChild(divs);
+                    divs.className = (i==0)?'show':'';
+
+                }
+            },
+            //调事件
+            events:function(even){
+                //将类数组转为数组
+                this.btns = Array.prototype.slice.call(this.box.getElementsByTagName('button'));
+                this.divs = Array.prototype.slice.call(this.box.getElementsByTagName('div'));
+                this.btns.forEach((e,i) =>{
+                    e[even] = () =>{
+                        this.change(i);
+                    }
+                });
+            },
+            change:function(index){
+                this.btns.map((e,i) => {
+                    this.btns[i].className = '';
+                    this.divs[i].className = '';
+                });
+                this.btns[index].className = 'active';
+                this.divs[index].className = 'show';
+            }
+        }
+        
+        
+        
+        
+        
+        
+        global.Tab = Tab;
+    })
+
+    let t = new Tab('box');
+    // t.init();
+    t.init({
+        btns:['shenghuo','nishishish','aaaaaaaa'],
+        con:['sjijagoeg','jwijigejiew','niefjiwj']
+    })
+
+
+</script>
 </body>
 </html>
