@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/reset.min.css">
+</head>
+<body>
+    <div class="content">
+        <div class="header">
+            <span>排序</span>
+            <a href="javascript:;">上架时间
+                <i class="up"></i>
+                <i class="down"></i>
+
+            </a>
+            <a href="javascript:;">热度
+                    <i class="up"></i>
+                    <i class="down"></i>
+    
+            </a>
+            <a href="javascript:;">价格
+                    <i class="up"></i>
+                    <i class="down"></i>
+    
+            </a>
+        </div>
+
+        <ul id="list">
+
+        </ul>
+    </div>
+<script src="json/product.js"></script>
+<script>
+
+
+
+
+    // function render(data){
+    //     let html = '';
+    //     data.forEach((e,i)=>{
+    //         html += `
+    //         <li>
+    //             <img src="${e.img}" alt="">
+    //             <span>${e.title}</span>
+    //             <span>${e.time}</span>
+    //             <span>${e.hot}</span>
+    //             <span>${e.price}</span>
+    //         </li>
+            
+    //         `;
+    //     });
+    //     list.innerHTML = html;
+    // }
+    // render(data);
+
+
+    // let btns = document.getElementsByClassName('header')[0].querySelectorAll('a');
+    // btns = Array.from(btns);
+    // btns.forEach((e,i) =>{
+    //     e.onoff = true;
+    //     e.onclick = function(){
+    //         if(i ===0){
+    //             spsort(this.onoff,'time')  
+    //         }
+    //         if(i ===1){
+    //             spsort(this.onoff,'hot') 
+    //         }
+    //         if(i ===2){
+    //             spsort(this.onoff,'price') 
+    //         }
+    //         this.onoff = !this.onoff;
+    //     }
+    // });
+    // //onoff是true 和false  st是time /hot /price
+    // function spsort(onoff,st){
+    //     if(onoff){
+    //         data.sort((a,b)=>{
+    //             a = (st == 'time')? a[st].replace(/-/g,''):a[st];
+    //             b = (st == 'time')? b[st].replace(/-/g,''):b[st];
+    //             return a-b;
+    //         });
+    //     }else{
+    //         data.sort((a,b)=>{
+    //             a = (st == 'time')? a[st].replace(/-/g,''):a[st];
+    //             b = (st == 'time')? b[st].replace(/-/g,''):b[st];
+    //             return b-a;
+    //         });
+
+    //     }
+    //     render(data);
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // //将后台得数据调用出来  展现在页面
+    // function render(data){
+    //     let html = '';
+    //     data.forEach((e,i) => {
+    //         html += `
+    //         <li>
+    //         <img src="${e.img}" alt="">
+    //         <span>${e.title}</span>
+    //         <span>${e.time}</span>
+    //         <span>${e.hot}</span>
+    //         <span>${e.price}</span>
+    //         </li>`;
+    //     });
+    //     list.innerHTML = html;
+    // }
+    // render(data);
+    // //获取到了a标签
+    // let btns = document.getElementsByClassName('header')[0].querySelectorAll('a');
+    // btns = Array.from(btns);
+    // btns.forEach((e,i) => {
+    //     e.onoff =true;
+    //     e.onclick = function(){
+    //         if(i === 0){
+    //             if(this.onoff){
+    //                 data.sort((a,b) =>{
+    //                     return a.time.replace(/-/g,'')*1 -b.time.replace(/-/g,'')*1; 
+    //                 });
+    //                 render(data);
+    //             }else{
+    //                 data.sort((a,b) =>{
+    //                     return b.time.replace(/-/g,'')*1 -a.time.replace(/-/g,'')*1; 
+    //                 });
+    //                 render(data);
+    //             }
+    //         }
+
+    //         if(i ===1){
+    //             if(this.onoff){
+    //                 data.sort((a,b) => {
+    //                     return a.hot - b.hot;
+    //                 });
+    //                 render(data);
+    //             }else{
+    //                 data.sort((a,b) =>{
+    //                     return b.hot - a.hot;
+    //                 });
+    //                 render(data);
+    //             }
+    //         }
+
+    //         if(i === 2){
+    //             if(this.onoff){
+    //                 data.sort((a,b) =>{
+    //                     return a.price - b.price;
+    //                 });
+    //                 render(data);
+    //             }else{
+    //                 data.sort((a,b) =>{
+    //                     return b.price - a.price;
+    //                 });
+    //             }
+
+    //         }
+    //         this.onoff = !this.onoff;
+    //     }
+    // })
+
+</script>
+</body>
+</html>
