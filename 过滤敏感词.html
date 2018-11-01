@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+let str = '此数组的第0个元素是与正则表达式相匹配的文本，第1个元素是与';
+
+let s = str.replace(/元素|数组|匹配|正则表达式/g,function($0,$1,$2,$3){
+    let temp = '';
+    for(let i=0;i<$0.length;i++){
+        temp += "*";
+    }
+// console.log($3);
+return temp;
+})
+
+console.log(s);
+
+</script>
+</body>
+</html>

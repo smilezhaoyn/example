@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <button id="btn">查看QQ号</button>
+<script>
+    btn.onclick = function(){
+        //下边是   [1-9]从1-9中提取数字，因为首饰不能为0数字的，
+        // 后边{4,10} 最小是5个数  最多是11个数
+        let qq = /^[1-9]\d{4,10}$/;
+        if(qq.test(txt.value)){
+            alert('是QQ');
+        }else{
+            alert('不好意思，你不是QQ');
+        }
+        txt.value = '';
+    }
+    
+    
+</script>
+</body>
+</html>

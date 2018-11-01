@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let str = '2018../////----10--//kkk12';
+    let s = str.replace(/(\d+)\D+(\d+)\D+(\d+)/,function($0,$1,$2,$3){
+        return $1 + '年' + $2 + '月' + $3 + '日';
+    })
+
+    console.log(s);
+
+</script>  
+</body>
+</html>
