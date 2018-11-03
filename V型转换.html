@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+
+#box{
+    position: relative;
+    margin: 100px;
+    border: 2px solid #000;
+}
+.kuai{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    /* background: yellow; */
+    position: absolute;
+}
+#btn{
+    position: absolute;
+    top:30px;
+    left: 500px;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <div>
+        <input type="button" value="点击变换" id="btn">
+    </div>  
+<script>
+    (function(){
+        
+        function Faf(){
+            this.num = 7;
+            this.juL = 50;
+            this.box = document.getElementById('box');
+            this.html = '';
+            this.obj = {
+                colors:["red","green","yellow","blue","pink","purple","skyblue"],
+                str:["top", "left", "bottom", "right"],
+                events:'onclick'
+            }
+            this.btn = document.getElementById('btn');
+
+        }
+        Faf.prototype = {
+            constructor:Faf,
+
+            init(obj){
+                for(let attr in obj){
+                    this.obj[attr] = obj[attr];
+                }
+                this.createDiv();//创建一个div
+                this.events(this.obj.events);
+                this.moren();
+
+            },
+            createDiv(){
+                for(let i=0;i<this.num;i++){
+                    let divs = document.createElement('div');
+                    divs.style.background = this.obj.colors[i%this.obj.colors.length];
+                    this.box.appendChild(divs);
+                }
+                this.divs = Array.prototype.slice.call(this.box.getElementsByTagName('div'));
+            },
+            events(enName){
+                this.btn[enName] = () =>{
+                    this.change();
+                }
+            },
+            moren(){
+                this.divs.forEach((e,i)=>{
+                    e.className = 'kuai';
+                    let a = i*50 + 'px';
+                    let b = (this.num - i -1)*50 + 'px';
+                    if(i<this.num/2){
+                        e.style.top =a;
+                        e.style.left = a;
+                    }else{
+                        e.style.top = b;
+                        e.style.left = a;
+                    }
+                });
+                // console.log(a)
+            },
+            change(){
+                this.divs.forEach((e,i)=>{
+                    e.className = 'kuai';
+                    let a = i*50 + 'px';
+                    let b = (this.num - i -1)*50 + 'px';
+                    if(i<this.num/2){
+                        e.style.top =a;
+                        e.style.left = a;
+                    }else{
+                        e.style.top = a;
+                        e.style.left = b;
+                    }
+                });
+            }
+
+        }
+    window.Faf = Faf;
+    })();
+
+let t = new Faf();
+t.init()
+
+
+</script>
+</body>
+</html>

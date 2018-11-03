@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+<script>
+/*
+    每个数据类型都有toString方法
+    数组和对象的不一样
+
+    classList.add()
+    classList.remove()
+    classList.contains()
+    classList.toggles()
+
+
+*/
+    let tools = (function(){ 
+        function $(name){
+            return document.querySelectorAll(name);
+        }
+        function isObject(type){
+            return Object.prototype.toString.call(type) === '[object Object]';
+        }
+
+        return{
+            $,
+            isObject
+        }
+    })();
+
+    let lis = tools.$('li');
+    console.log(lis)
+
+    console.log(tools.isObject({}))
+</script>
+</body>
+</html>
