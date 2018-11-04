@@ -69,12 +69,12 @@
 
                 this.timer = setInterval(() =>{
                     this. txtGet();
-                    this.Shij();
                     let a = this.txtGet();
-                    // console.log(a.H)
+                    // console.log(this.str*1)
                     // console.log(a.H == '00' && a.M == '00' && a.T == '00')
-                    if(a.H <= '00' && a.M <= '00' && a.T <= '00'){
+                    if(a.H <= '00' && a.M <= '00' && a.T <= '00' ||  isNaN(this.str*1)){
                         clearInterval(this.timer);
+                        
                         this.str = '000000';
                         this.bg.style.display = 'block';
                         this.big.style.visibility = 'visible';
@@ -89,7 +89,9 @@
                         // console.log(this.img.src)
                         this.geh();
                         this.he();
+                        
                     }
+                    this.Shij();
                     // console.log(this)
                     // console.log(1)
                 },1000);
