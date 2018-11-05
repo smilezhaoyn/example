@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <button id="btn">确定</button>
+    <ul id="ul"></ul>
+
+<script>
+    // const txt = document.getElementById('txt');
+    // const btn = document.getElementById('btn');
+    // const ul = document.getElementById('ul');
+
+    // let arr = ['你','我','会会','宝民','亚楠'];
+    // let arr1 = ['$','#','@','^','&','*'];
+
+    // let re = new RegExp(arr.join('|'),'g');
+
+    // btn.onclick = function(){
+    //     let con = txt.value;
+    //     console.log(con)
+    //     if(!con){
+    //         alert('请输入内容');
+    //         return;
+    //     }
+
+    //     let a = con.replace(re,function($0){
+    //         let html = '';
+    //         for(let i=0;i<$0.length;i++){
+    //             html += arr1.sort(() => Math.random()-0.5)[0];
+    //         }
+    //         return html;
+    //     })
+
+    //     let li = document.createElement('li');
+    //     li.innerHTML = a;
+    //     ul.appendChild(li);
+    //     txt.value = '';
+    // }
+
+
+
+    const btn =document.getElementById('btn');
+    const txt = document.getElementById('txt');
+    const ul = document.getElementById('ul');
+
+    let arr = ['你','我','会会','宝民','亚楠'];
+    let arr1 = ['$','#','@','^','&','*'];
+
+    let re =new RegExp(arr.join('|'),'g');  //将arr进行拼接
+
+    btn.onclick = function(){
+        let con = txt.value;
+        if(!con){
+            alert('请输入内容');
+            return;
+        }
+
+        let b = con.replace(re,function($0){
+            let html = '';
+            for(let i=0;i<$0.length;i++){
+                html += arr1.sort(() => Math.random()-0.5)[0];
+            }
+            return html;
+        });
+
+        let li = document.createElement('li');
+        li.innerHTML = b;
+        ul.appendChild(li);
+        txt.value = '';
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  arr1.sort(() => {
+//         return Math.random()-0.5;
+//     })
+//     console.log(arr1)
+// console.log(Math.random()-0.5)
+</script>
+</body>
+</html>

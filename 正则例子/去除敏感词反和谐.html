@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="txt">
+    <button id="btn">确定</button>
+    <ul id="ul"></ul>
+
+<script>
+
+    const txt = document.getElementById('txt');
+    const btn = document.getElementById('btn');
+    const ul = document.getElementById('ul');
+    let arr = ['你','我','会会','宝民','亚楠'];
+    let arr1 = ['$','#','@','^','&','*'];
+
+    let re = new RegExp(arr.join('|','g'));
+
+    btn.onclick = function(){
+        let con = txt.value;
+        if(!con){
+            alert('请输入内容');
+            return;
+        }
+
+        let chuli = con.replace(re,function($0){
+            let html = '';
+            for(let i=0;i<$0.length;i++){
+                html += arr1.sort(() => Math.random()-0.5)[0];
+            }
+            return html;
+        });
+
+        let li = document.createElement('li');
+        let a = document.createElement('a');
+        let span = document.createElement('span');
+        a.href = 'javascript:;';
+        a.innerHTML = '返回去';
+
+        span.innerHTML = chuli;  //处理过的字
+        span.index = con;  //给span加一个自定义属性，并且把每一处理过的字赋值给它
+        // f = con;
+        // span.setAttribute('index',con);
+        // console.log(span.index)
+        li.appendChild(span);
+        li.appendChild(a);
+        ul.appendChild(li);
+        txt.value = '';
+        a.onclick = function(){
+            let preV = this.previousElementSibling;
+            preV.innerHTML = span.index;
+            // preV.innerHTML = preV.getAttribute('index');
+            // preV.innerHTML = span.getAttribute('index');
+
+            // console.log(preV)
+        }
+    }
+</script>
+</body>
+</html>

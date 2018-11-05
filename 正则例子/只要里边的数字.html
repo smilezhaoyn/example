@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    let str = 'sd7d6ankdsj8c sa093i29x8';
+    // console.log(str.match(/\d+/g))
+    let arr = [];
+    let num = '';
+    for(let i = 0;i<str.length;i++){
+        //是一个数字的时候
+        if(!isNaN(parseInt(str[i]))){
+            num += str[i];
+            console.log(num)
+        }else{
+            //因为空字符串是0；所以是一个数字  会加到里边  要去掉；
+            if(num){  //是一个非空字符串
+                arr.push(num);
+                num = '';
+            }
+       
+        }
+        
+    }
+    if(num){
+            arr.push(num);
+            num = '';
+        }
+
+
+console.log(arr)
+</script>
+</body>
+</html>
