@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .active{
+        background: yellow;
+    }
+    #box div{
+        width: 300px;
+        height: 300px;
+        border: 2px solid #000;
+        display: none;
+    }
+    #box .show{
+        display: block;
+    }
+
+
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+
+(function(global,Fa){
+    Fa(global);
+})(typeof Window ==='undefined'?this:window,function(global,noglobal){
+    function Tab(id){
+        return new init1(id);
+    }
+    function init1(id){
+        this.box = document.getElementById(id);
+        this.obj = {
+            btn:['新闻','娱乐','生活'],
+            con:['新闻新闻','娱乐娱乐娱乐','生活'],
+            event:'onclick'
+        }
+    }
+    init1.prototype = Tab.prototype = {
+        constructor:Tab,
+        init(obj){
+            // console.log(1)
+            for(let attr in obj){
+                this.obj[attr] = obj[attr];
+            }
+            this.createBtn(); //创建点击按钮
+            this.createDiv(); //创建DIV
+            this.events(this.obj.event); //点击事件
+        },
+        createBtn(){
+            for(let i=0;i<this.obj.btn.length;i++){
+                let btns = document.createElement('button');
+                btns.innerHTML = this.obj.btn[i]; 
+                this.box.appendChild(btns);
+                btns.className = (i==0)?'active':'';
+            }
+        },
+        createDiv(){
+            for(let i=0;i<this.obj.con.length;i++){
+                let divs = document.createElement('div');
+                divs.innerHTML = this.obj.con[i];
+                this.box.appendChild(divs);
+                divs.className = (i==0)?'show':'';
+            }
+        },
+        events(enE){
+            this.btns = Array.from(this.box.getElementsByTagName('button'))
+            // console.log(this.btns)
+            this.divs = Array.from(this.box.getElementsByTagName('div'));
+            this.btns.forEach((e,i)=> {
+                e[enE] = ()=>{
+                    this.change(i);
+                }
+            });
+        },
+        change(index){
+            this.btns.map((e,i) => {
+                this.btns[i].className = '';
+                this.divs[i].className = '';
+            });
+            this.btns[index].className = 'active';
+            this.divs[index].className = 'show';
+        }
+    }
+
+
+    global.Tab = Tab;
+});
+
+    let t = new Tab('box');
+    t.init();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// (function(global,Fa){
+//     Fa(global);
+// })(typeof Window ==='undefined'?this:window,function(global,noglobal){
+//     function Tab(id){
+//         this.box = document.getElementById(id);
+//         this.obj = {
+//             btn:['新闻','娱乐','生活'],
+//             con:['新闻新闻','娱乐娱乐娱乐','生活'],
+//             event:'onclick'
+//         }
+//     }
+
+//     Tab.prototype = {
+//         constructor:Tab,
+//         init(obj){
+//             // console.log(1)
+//             for(let attr in obj){
+//                 this.obj[attr] = obj[attr];
+//             }
+//             this.createBtn(); //创建点击按钮
+//             this.createDiv(); //创建DIV
+//             this.events(this.obj.event); //点击事件
+//         },
+//         createBtn(){
+//             for(let i=0;i<this.obj.btn.length;i++){
+//                 let btns = document.createElement('button');
+//                 btns.innerHTML = this.obj.btn[i]; 
+//                 this.box.appendChild(btns);
+//                 btns.className = (i==0)?'active':'';
+//             }
+//         },
+//         createDiv(){
+//             for(let i=0;i<this.obj.con.length;i++){
+//                 let divs = document.createElement('div');
+//                 divs.innerHTML = this.obj.con[i];
+//                 this.box.appendChild(divs);
+//                 divs.className = (i==0)?'show':'';
+//             }
+//         },
+//         events(enE){
+//             this.btns = Array.from(this.box.getElementsByTagName('button'))
+//             // console.log(this.btns)
+//             this.divs = Array.from(this.box.getElementsByTagName('div'));
+//             this.btns.forEach((e,i)=> {
+//                 e[enE] = ()=>{
+//                     this.change(i);
+//                 }
+//             });
+//         },
+//         change(index){
+//             this.btns.map((e,i) => {
+//                 this.btns[i].className = '';
+//                 this.divs[i].className = '';
+//             });
+//             this.btns[index].className = 'active';
+//             this.divs[index].className = 'show';
+//         }
+//     }
+
+
+//     global.Tab = Tab;
+// });
+
+//     let t = new Tab('box');
+//     t.init();
+
+</script>
+</body>
+</html>
