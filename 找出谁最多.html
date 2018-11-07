@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let str = 'nifjwingwiojgissosssneijissngiejsss';
+    // let obj = {};
+    // for(let i=0;i<str.length;i++){
+    //     if(!obj[str[i]]){
+    //         obj[str[i]] = 1;
+    //     }else{
+    //         obj[str[i]] ++;
+    //     }
+    // }
+    // // console.log(obj)
+    // let n = -Infinity;
+    // for(let attr in obj){
+    //     if(obj[attr] >n){
+    //         n = obj[attr];
+    //         name = attr;
+    //     }
+    // }
+    // console.log(n,name)
+
+        let str1 = str.split('').sort().join('');
+        let n = -Infinity;
+        // console.log(str1)
+        str1.replace(/(\w)\1+/g,function($0,$1){
+            // console.log($0);
+            // console.log($1)
+            if(n<$0.length){
+                n = $0.length;
+                name = $1;
+            }
+        })
+    console.log(n,name)
+</script>
+</body>
+</html>
