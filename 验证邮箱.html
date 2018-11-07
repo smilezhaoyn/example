@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .h{
+        border: 1px solid red;
+    }
+    .l{
+        border: 1px solid yellowgreen;
+    }
+
+
+</style>
+</head>
+<body>
+   onchange： <input type="text" id="txt">
+   oninput： <input type="text" id="txt1">
+<script>
+
+/*
+    onchange 当失去焦点之后，如果内容发生变化就触发
+    oninput  当用户在焦点元素上输入内容的时候触发
+*/
+    txt.onchange = function(){
+        console.log(1)
+
+    }
+    txt1.oninput = function(){
+        console.log(1)
+    }
+
+</script>
+</body>
+</html>

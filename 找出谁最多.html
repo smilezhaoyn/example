@@ -26,11 +26,12 @@
     // console.log(n,name)
 
         let str1 = str.split('').sort().join('');
+        console.log(str1)
         let n = -Infinity;
         // console.log(str1)
         str1.replace(/(\w)\1+/g,function($0,$1){
-            // console.log($0);
-            // console.log($1)
+            console.log($0);
+            console.log($1)
             if(n<$0.length){
                 n = $0.length;
                 name = $1;
