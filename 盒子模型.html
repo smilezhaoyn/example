@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+// console.log(getComputedStyle(box).width);
+// console.log(box.style.width)
+// (function(){
+//     function offset(ele){
+//         if(ele.nodeType === 1){
+//             ele =ele;
+//         }else if(typeof ele === 'string'){
+//             ele = document.querySelector(ele)
+//         }else{
+//             return null;
+//         }
+//         let bl = ele.clientLeft;
+//         let bt = ele.clientTop;
+//         let obj = {
+//             left:0,
+//             top:0
+//         }
+//         while(ele){
+//             obj.left += ele.offsetLeft + ele.clientLeft;
+//             obj.top += ele.offsetTop + ele.clientTop;
+//             ele = ele.offsetParent;
+//         }
+//         obj.left -= bl;
+//         obj.top -= bt;
+//     }
+//     return{
+//         obj
+//     }
+
+// })();
+
+for(var i=0;i<5;i++){setTimeout(function(){console.log(i)})}
+
+</script>
+</body>
+</html>
