@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background:url(../img/bg1.jpg);
+    background-size: cover;
+}
+.con{
+    width: 400px;
+    height: 500px;
+    border-radius: 10%;
+    border: 1px solid #fff;
+    background:rgba(255, 255, 255, 0.4);
+    margin: 62px auto;
+}
+h2{
+    text-align: center;
+    /* color:blanchedalmond; */
+    /* color:snow; */
+    color: cadetblue;
+    margin-top: 50px;
+    /* color:darkcyan; */
+}
+ul{
+    list-style: none;
+    margin-left: 60PX;
+}
+ul li{
+    margin-top: 40px;
+}
+ul li span{
+    width: 80px;
+    /* border: 1px solid  #000; */
+    text-align: center;
+    /* display: block; */
+    display: inline-block;
+    color:snow;
+}
+ul li input {
+    height: 30px;
+    padding-left: 10px;
+    outline: none;
+    border-radius: 8%;
+}
+button{
+    margin-left: 70px;
+    margin-top: 50px;
+    width: 260px;
+    height: 50px;
+    border-radius: 10%;
+    font-size: 16px;
+    background: seashell;
+    font-weight: bold;
+
+}
+.ok{
+    border-color: green;
+    color: green;
+}
+.nook{
+    border-color: red;
+    color: red;
+}
+
+button.bnd{
+    cursor:no-drop;
+}
+button.nd{
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+    <div class="con">
+        <h2>注册信息</h2>
+        <ul>
+            <li>
+                <span>QQ</span>
+                <input type="text" placeholder="请输入QQ号" class="qq">
+            </li>
+            <li>
+                <span>邮箱</span>
+                <input type="text" placeholder="请输入邮箱" class="email">
+            </li>
+            <li> 
+                <span>手机</span>
+                <input type="text" placeholder="请输入手机号" class="phon">
+            </li>
+            <li>
+                <span>出生日期</span>
+                <input type="text" placeholder="请输入**年**月**日" class="day">
+            </li>
+        </ul>
+
+        <button class="btn bnd" id="btn" disabled>注册</button>
+
+    </div>
+
+<script>
+    let inputs = Array.from(document.getElementsByTagName('input'));
+    console.log(inputs);
+    let re = {
+        qq:/^[1-9]\d{4,10}$/,
+        email:/^[A-Za-z]\w{5,17}@[1-9A-Za-z]{2,8}(\.(com|cn|net)){1,2}$/,
+        phon:/^1[3456789]\d{9}$/,
+        day:/\d+\D+\d+\D+\d+\D*$/
+    }
+
+
+    let arr = [];
+    inputs.forEach((e,i) =>{
+        arr.push(false);
+        e.N = e.className;
+        e.oninput = function(){
+            // console.log(re[this.N].test(this.value))
+            if(re[this.N].test(this.value)){
+                this.classList.remove('nook');
+                this.classList.add('ok');
+                arr[i]= true;
+            }else{
+                this.classList.remove('ok');
+                this.classList.add('nook');
+                arr[i] = false;
+        }
+        btn.disabled = !arr.every( e => e);
+        btn.className = !arr.every(e=>e)?'bnd':'nd';
+        console.log(arr)
+    }
+   
+    });
+    console.log(arr)
+    //     let re = [
+    //         /^[1-9]\d{4,10}$/ ,
+    //         /^[A-Za-z]\w{5,17}@[1-9A-Za-z]{2,8}(\.(com|cn|net)){1,2}$/,
+    //         /^1[3456789]\d{9}$/,
+    //         /\d+\D+\d+\D+\d+\D*^$/
+    //     ]
+    //     console.log(re[0])
+    // let arr = [];
+
+    // inputs.forEach((e,i)=>{
+    //     arr.push(false);
+    //     e.oninput = () =>{
+    //         // console.log(re[i].test(e.value))
+    //         // console.log(i)
+    //         // console.log(e.value)
+    //         if(re[i].test(e.value)){
+    //             e.classList.remove('nook');
+    //             e.classList.add('ok');
+    //             // console.log(11111)
+    //         }else{
+    //             e.classList.remove('ok');
+    //             e.classList.add('nook');
+    //             // console.log(2222222)
+    //         }
+  
+    //     }
+    //     btn.onclick = function(){
+    //             if(e.value === ''){
+    //                 alert(`请输入${e.value}`);
+    //             }
+    //             console.log(1)
+    //         }
+    // })
+
+
+</script>
+</body>
+</html>

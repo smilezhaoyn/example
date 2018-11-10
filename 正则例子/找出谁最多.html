@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+    let str = 'dnsasudhusadssasdgsjdgddsjsddhaslfdiusadlhsdsfudahsful'; 
+
+    let str1 = str.split('').sort().join('');
+    console.log(str1);
+    let n = -Infinity;//无穷大
+    let name = '';
+    str1.replace(/([a-z])\1+/g,function($0,$1){
+        console.log($0);
+        console.log($1);
+        if(n<$0.length){
+            n = $0.length;
+            name = $1;
+        }
+        
+    })
+    console.log(n,name)
+        
+</script>
+</body>
+</html>
