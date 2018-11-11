@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+
+<script>
+    let box = document.getElementById('box');
+
+    (function move(){
+        let  timer = requestAnimationFrame(move);
+        let date = new Date();
+        
+        let Y = date.getFullYear();
+        let M = date.getMonth() +1;
+        let D = date.getDate();
+        let H = date.getHours();
+        let m = date.getMinutes();
+        let t = date.getSeconds();
+
+        function Dou(n){
+            return n<10?'0'+n*1 : '' +n; 
+        }
+        box.innerHTML = Dou(Y) + '年' + Dou(M) + '月' +Dou(D) +'日' + Dou(H) + '时' + Dou(m) + '分' + Dou(t) + '秒';
+    
+        document.onclick = function(){
+            cancelAnimationFrame(timer);
+        }
+    
+    
+    
+    })();
+
+
+
+</script>
+</body>
+</html>
