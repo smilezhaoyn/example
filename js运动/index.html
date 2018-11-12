@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background: rebeccapurple;
+            left: 100px;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="box">111111111111</div>
+    <button id="btn">点击</button>
+<script src="js/tween.js"></script>
+<script>
+    let box = document.getElementById('box');
+    let btn = document.getElementById('btn');
+
+    //点击box调用move方法
+    btn.onclick = () =>{
+        move(box,{
+            left:{
+                begin:100,
+                count:'600px'
+            },
+            top:100,
+            fontSize:'1rem'
+        },500);
+    }
+
+
+    function move(ele,obj,duration){  //ele是box  obj是传入的对象   duration总时间
+        
+        let j = {};  //建一个空对象，然后将obj中的东西放到这个空对象中 ，让传入的 东西变成一个对象。
+        let begin = 0;  //开始的初始值为0
+        let unit = 'px';  //设置默认的走px
+        let re = /px|rem|em/;
+        let timer = null;
+        let t =0;
+
+        for(let attr in obj){   
+            /*
+            虽然要将obj中的东西放到J这个对象中，但是要两种情况
+                1，它是一个对象
+                2，它是一个字符串
+            */
+
+           if(typeof obj[attr] === 'string'){
+               begin = parseFloat(getComputedStyle(ele)[attr]);    //获取对应的attr的初始值
+               unit = obj[attr].match(re)[0] ? obj[attr].match(re)[0] : 'px';
+
+               j[attr] = {
+                   begin,
+                   count:parseFloat(obj[attr]) - begin,
+                   unit
+               }
+
+           }else if(obj[attr].constructor == Object){  //这里为什么不用typeof检测是，typeof检测数组也是一个对象，
+           //所以不能更精确的检测出检测出来的是一个对象还是一个数组，所以这里用到了constructor
+
+                if(typeof obj[attr].count === 'string'){
+                    unit = obj[attr].count.match(re) ? obj[attr].count.match(re)[0] : 'px';
+                    j[attr] = {
+                        begin:obj[attr].begin,
+                        count:parseFloat(obj[attr].count) - parseFloat(obj[attr].begin),
+                        unit
+                    }
+
+                }
+
+           }else{ //数字的时候
+               begin = parseFloat(getComputedStyle(ele)[attr]);
+               j[attr] = {
+                   begin,
+                   count:obj[attr] - begin,
+                   unit
+               }
+           }
+
+console.log(j)
+        }
+
+        // (function animate(){
+
+        //     timer = requestAnimationFrame(animate);
+        //     t += 16.7;//调用帧动画之后的时间变化
+
+        //     if(t >= duration) t = duration;
+
+        //     for(let i in j){
+        //         if(j[i] === 'opactiy'){
+        //             console.log(j[i].count)
+        //             ele.style[i] = t/duration * j[i].count + j[i].begin;
+        //         }else{
+        //             ele.style[i] = t/duration * j[i].count + j[i].begin + j[i].unit;
+        //         }
+
+        //     }
+
+        //     if(t === duration)cancelAnimationFrame(timer)
+
+
+
+        // })();
+
+
+        (function dong(){
+            // console.log(1)
+            timer = requestAnimationFrame(dong);
+            t += 16.7;
+
+            if(t >= duration) t = duration;
+            
+            for(let i in j ){
+                
+                if(j[i] === 'opacity' ){
+                    // ele.style[i] = t/duration * j[i].count + j[i].begin;
+                    ele.style[i] = Tween.elasticBoth(t,j[i].begin, j[i].count,duration);
+                }else{
+                    // ele.style[i] = t/duration * j[i].count + j[i].begin + j[i].unit;
+                    ele.style[i] = Tween.elasticBoth(t,j[i].begin, j[i].count,duration) + j[i].unit;
+                }
+            }
+
+            if(t === duration) cancelAnimationFrame(timer);
+
+        })();
+
+
+
+
+
+
+
+    }
+
+
+
+
+</script>
+</body>
+</html>
