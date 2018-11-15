@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/1.css">
+</head>
+<body>
+
+<div id="box">1223644</div>
+<button id="btn">点击</button>
+<script src="js/tween.js"></script>
+<script>
+let box = document.getElementById('box');
+let btn = document.getElementById('btn');
+
+//第一版
+
+    // let  begin = parseFloat(getComputedStyle(box).left);
+    // let count = 500-begin;
+    // let duration = 1000;
+    // let timer = null;
+    // btn.onclick = () => {
+    //     // let nowDate = new Date();
+    //     let t =0;
+    //     timer = setInterval(() => {
+    //         // let newDate = new Date();
+    //         // let t = newDate - nowDate;
+    //         t += 16.7;
+    //         if(t>duration){
+    //             t=duration;
+    //         }
+            
+    //         // console.log(t)
+    //         box.style.left = t/duration* count + begin + 'px';
+    //         console.log(t/duration* count)
+    //         if(t===duration){
+    //             clearInterval(timer)
+    //         }
+    //     },16.7);
+    // }
+
+box.onclick = () =>{
+    move(box,{
+        left:300,
+        top:300,
+        fontSize:{
+            begin:2,
+            count:'5rem'
+        }
+    },500);
+}
+
+
+function move(ele,obj,duration){
+    let j = {};
+    let begin = 0;
+    let unit = 'px';
+    let timer = null;
+    let re = /px|rem|em/;
+    let t =0;
+    for(let i in obj){
+        // j[a] = obj[a];
+        if(typeof obj[i] === 'string'){
+            begin = parseFloat(getComputedStyle(ele)[i]);   //获取对应宽高或者其他的初始值
+            unit = obj[i].match(re)[0] ? obj[i].match(re)[0] : 'px';
+            
+            j[i] = {
+                begin,
+                count:parseFloat(obj[i]) - begin,
+                unit
+            }
+        }else if(obj[i].constructor == Object){  //为什么不用typeof检测，是因为typeof除了检测对象是Object之外，数组也是一个对象。
+            if(typeof obj[i].count === 'string'){
+                unit = obj[i].count.match(re) ? obj[i].count.match(re)[0] : 'px';
+            }
+
+            j[i] = {
+                begin:obj[i].begin,
+                count:parseFloat(obj[i].count) - obj[i].begin,
+                unit
+            }
+
+        }else{
+            begin =  parseFloat(getComputedStyle(ele)[i]);
+            j[i] = {
+                begin,
+                count:obj[i] - begin,
+                unit
+            }
+        }
+
+
+
+    }
+
+    (function animate(){
+
+        timer = requestAnimationFrame(animate);
+        t+=16.7;
+
+        if(t >= duration){
+            t = duration;
+        }
+        
+        for(let m in j){
+            if( m === 'opacity'){
+                // ele.style[m] = t/duration * j[m].count + j[m].begin;
+                ele.style[m] = Tween.elasticBoth(t,j[m].begin, j[m].count,duration);
+            }else{
+                // ele.style[m] = t/duration * j[m].count + j[m].begin + j[m].unit;
+                ele.style[m] = Tween.elasticBoth(t,j[m].begin, j[m].count,duration) + j[m].unit;
+            }
+        }
+
+
+
+
+        if(t === duration){
+            cancelAnimationFrame(timer);
+        }
+
+
+    })();
+
+
+
+
+
+    console.log(j)
+}
+
+
+
+
+</script>
+
+<!-- <script src="js/1.js"></script> -->
+</body>
+</html>
