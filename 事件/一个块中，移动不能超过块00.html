@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#con{
+    width: 500px;
+    height: 500px;
+    border: 5px solid #000;
+    position: relative;
+    margin-left: 100px;
+}
+#box{
+    width: 100px;
+    height: 100px;
+    background: yellowgreen;
+    position: absolute;
+}
+
+</style>
+</head>
+<body>
+    <div id="con">
+        <div id="box"></div>
+    </div>
+
+<script>
+
+    let con = document.getElementById('con');
+    let box = document.getElementById('box');
+
+    con.onmousemove = function(ev){
+        let Left = ev.pageX - con.offsetLeft - box.clientWidth/2;
+        let Top = ev.pageY - con.offsetTop - box.clientHeight/2;
+
+        if(Left < 0){
+            Left = 0;
+        }
+        // console.log(con.clientWidth - box.clientWidth)
+        if(Left > con.clientWidth - box.clientWidth){
+            Left =  con.clientWidth - box.clientWidth;
+            
+        }
+
+        if(Top < 0){
+            Top = 0;
+        }
+        if(Top > con.clientHeight - box.clientHeight){
+            Top =  con.clientHeight - box.clientHeight;
+        }
+
+        console.log(Left,Top)
+        box.style.left = Left + 'px';
+        box.style.top = Top + 'px';
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function fn(){
+// 	alert('box1');
+// }
+// function fn2(){
+// 	alert('box2');
+// }
+// box1.addEventListener('click',fn);
+// box1.addEventListener('click',fn);
+// box1.addEventListener('click',fn);
+// box2.addEventListener('click',fn2);
+// box2.addEventListener('click',function(){
+// 	alert('box22')
+// });
+
+
+
+</script>
+</body>
+</html>
