@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+
+ul{
+    list-style: none;
+}
+li{
+    border: 1px solid #000;
+}
+
+</style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+
+<script>
+let lis = Array.from(document.getElementsByTagName('li'));
+let ul = document.querySelector('ul');
+// // console.log(ul)
+//     lis.forEach((e,i) => {
+//         e.onclick = function(){
+//             e.style.background = 'green';
+//         }
+//     });
+
+    ul.onclick = function(ev){
+        // console.log(ev.target)
+        //不加判断的时候，会进行冒泡，点击ul的 时候，也会全部为绿色
+        //加判断的时候，只能在li上边加绿色，而再点击ul的时候，它不会添加背景
+        if(ev.target.nodeName === 'LI'){  
+            ev.target.style.background = 'green';
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

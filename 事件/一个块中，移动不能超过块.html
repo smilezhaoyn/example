@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    #box{
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top:0;
+        left: 0;
+        background: yellowgreen;
+        cursor: move;
+    }
+    body{
+        height: 3000px;
+    }
+    #con{
+        width: 300px;
+        height: 300px;
+        border: 5px solid #000;
+        margin-left: 50px;
+        position: relative;
+    }
+    </style>
+</head>
+<body>
+    <div id="con">
+        <div id="box">
+        </div>
+    </div>
+
+<script>
+    con.onmousemove = function(ev){
+        let Left = ev.pageX - box.clientWidth/2 -con.offsetLeft -con.clientLeft;
+        let Top = ev.pageY - box.clientHeight/2 - con.offsetTop -con.clientTop;
+        console.log(Left)
+
+        if(Left<0){
+            Left = 0;
+        }else if(Left >con.clientWidth - box.clientWidth){
+            Left = con.clientWidth - box.clientWidth;
+        }
+
+
+        if(Top<0){
+            Top = 0;
+        }else if(Top >con.clientHeight - box.clientHeight){
+            Top = con.clientHeight - box.clientHeight;
+        }
+
+    box.style.left = Left + 'px';
+    box.style.top = Top + 'px';
+
+
+    }
+
+    con.onmouseover = function(){
+        box.style.display = 'block';
+    }
+    con.onmouseout = function(){
+        box.style.display = 'none';
+    }
+
+
+</script>
+</body>
+</html>

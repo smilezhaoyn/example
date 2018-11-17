@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    #box{
+        width: 100px;
+        height: 100px;
+        background: rebeccapurple;
+    }
+    
+    </style>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <div id="box"></div>
+<script>
+    let onOff = true;
+    btn.onclick = function(ev){
+        if(onOff){
+            box.style.display = 'none';
+            console.log(1)
+        }else{
+            box.style.display = 'block';
+            console.log(2)
+        }
+       onOff = !onOff;
+
+    //    ev.stopPropagation();
+        ev.cancelBubble = true;
+    }
+
+    document.onclick =function(){
+        box.style.display = 'none';
+        onOff = false;
+    }
+    
+
+</script>
+</body>
+</html>

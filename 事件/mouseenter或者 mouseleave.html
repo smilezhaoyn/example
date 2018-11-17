@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 300px;
+    height: 300px;
+    background: yellow;
+    position: absolute;
+}
+#box1{
+    width: 200px;
+    height: 200px;
+    background: yellowgreen;
+    position: absolute;
+}
+
+</style>
+</head>
+<body>
+    <!-- <div id="box"> -->
+        <div id="box1">
+            <!-- <button id="btn">确定</button> -->
+        </div>
+    <!-- </div> -->
+
+<script>
+// box.onmouseover = function(){
+//     alert('box亦如');
+// }
+// box.onmouseout = function(){
+//     alert('box移出');
+// }
+
+// box1.onmouseover = function(){
+//     alert('box1亦如');
+// }
+// box1.onmouseout = function(){
+//     alert('box1移出');
+// }
+
+
+
+// box.onmouseenter = function(){
+//     alert('box亦如');
+// }
+// box.onmouseleave = function(){
+//     alert('box移出');
+// }
+
+// box1.onmouseenter = function(){
+//     alert('box1亦如');
+// }
+// box1.onmouseleave = function(){
+//     alert('box1移出');
+// }
+
+
+
+//clientY;clientX 在可视区中的位置
+//鼠标移动事件
+// document.onmousemove = function(ev){
+//     // console.log(1)
+//     // console.log(ev.clientX)
+//     box1.style.left = ev.clientX - box1.offsetWidth/2 + 'px';
+
+//     console.log(box1.style.left)
+//     box1.style.top = ev.clientY - box1.offsetHeight/2 + 'px';
+// }
+
+
+// pageX;pageY 基于页面的位置
+// 鼠标移动事件
+document.onmousemove = function(ev){
+    // console.log(1)
+    // console.log(ev.clientX)
+    box1.style.left = ev.pageX - box1.offsetWidth/2 + 'px';
+
+    console.log(box1.style.left)
+    box1.style.top = ev.pageY - box1.offsetHeight/2 + 'px';
+}
+
+</script>
+</body>
+</html>

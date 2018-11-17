@@ -41,7 +41,7 @@ let movement = (
                     }
     
                 }else{
-                    begin = parseFloat(getComputedStyle(ele)[i]);
+                    begin = parseFloat(getComputedStyle(opt.ele)[i]);
                     j[i] = {
                         begin,
                         count:attr[i] - begin,

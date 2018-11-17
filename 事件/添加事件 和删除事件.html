@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: yellowgreen;
+}
+
+
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <button id="btn">清除</button>
+
+<script>
+    function fn(){
+        alert('fn');
+    }
+    box.addEventListener('click',fn);
+    btn.addEventListener('click',function(){
+        box.removeEventListener('click',fn);
+    });
+    box.addEventListener('click',function(){
+        box.addEventListener('click',fn);
+    });
+
+</script>
+</body>
+</html>
