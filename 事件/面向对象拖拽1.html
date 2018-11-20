@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+
+#box{
+    width: 100px;
+    height: 100px;
+    background: yellowgreen;
+    position: relative;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+/* ul{
+    width: 100px;
+    height: 100px;
+    background: yellow;
+} */
+div{
+    /* width: 100px;
+    height: 100px; */
+    background: yellow;
+    position: absolute;
+}
+
+</style>
+</head>
+<body>
+    <div id="box"></div>
+
+<script>
+
+    class Per {
+        constructor(id){
+            this.box = document.getElementById(id);
+            this.L = 0;
+            this.T = 0;
+            this.M = this.move.bind(this);
+            this.U = this.up.bind(this);
+            this.div = document.createElement('div');
+            console.log(this.div)
+            this.body = document.getElementsByTagName('body')[0];
+            console.log(this.body)
+        }
+        init(){
+            document.addEventListener('mousedown',this.down.bind(this));
+        }
+        down(ev){ 
+            //获得一小节（点击的位置到box边框的距离）
+            this.body.appendChild(this.div);
+            this.L = ev.pageX;
+            this.T = ev.pageY;
+            document.addEventListener('mousemove',this.M);
+            document.addEventListener('mouseup',this.U);
+            
+            
+        }
+        move(ev){
+            this.div.style.display = 'block';
+            this.div.style.width = ev.pageX - this.L + 'px';
+            this.div.style.height = ev.pageY - this.T + 'px';
+
+            this.div.style.left = this.L + 'px';
+            this.div.style.top = this.T + 'px';
+
+            // box.style.left = ev.pageX - this.L + 'px';
+            // box.style.top = ev.pageY - this.T + 'px';
+        }
+        up(){
+            document.removeEventListener('mousemove',this.M);
+            document.removeEventListener('mouseup',this.U)
+            this.div.style.display = 'none';
+        }
+    }
+
+let  p = new Per('box');
+p.init();
+
+
+
+</script>
+</body>
+</html>

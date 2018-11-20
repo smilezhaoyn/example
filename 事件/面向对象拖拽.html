@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: yellowgreen;
+    position: relative;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+
+    class Darg {
+
+        constructor(id){
+            this.box = document.getElementById(id);
+            this.L = 0;
+            this.H = 0;
+            this.M = this.move.bind(this);
+            this.U = this.up.bind(this);
+
+        }
+
+        init(){
+            this.box.addEventListener('mousedown',this.down.bind(this)); //将this变为Darg
+        }
+        down(ev){
+            this.L = ev.pageX - this.box.offsetLeft;   //得到一小节的距离   点击的位置到盒子边的距离
+            this.H = ev.pageY - this.box.offsetTop;
+            document.addEventListener('mousemove',this.M);
+            document.addEventListener('mouseup',this.U)
+        }
+        move(ev){
+            this.box.style.left = ev.pageX - this.L + 'px';
+            this.box.style.top = ev.pageY - this.H + 'px';
+        }
+        up(ev){
+            document.removeEventListener('mousemove',this.M);
+            document.removeEventListener('mouseup',this.U);
+        }
+
+
+
+
+    }
+
+    let p = new Darg('box');
+    p.init();
+
+</script>
+</body>
+</html>
