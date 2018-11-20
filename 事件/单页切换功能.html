@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+div{
+    width: 100vw;
+    height: 100vh;
+}
+body{
+    position: relative;
+    overflow: hidden;
+    top:0;
+    left: 0;
+}
+
+</style>
+</head>
+<body id="body">
+<script>
+    function Mywheel(obj,fn){
+    if(window.onmousewheel === undefined){ //证明是一个火狐
+        obj.addEventListener('DOMMouseScroll',move);
+    }else{
+        obj.addEventListener('mousewheel',move);
+    }
+
+    function move(ev){
+        let p = false;
+        if(ev.wheelDelta){  //谷歌上边有
+            p = ev.wheelDelta >0 ? true:false;  //true的时候  是向上 false的时候是向下
+        }else{
+            p = ev.detail < 0 ? true : false; 
+        }
+
+        fn(p);
+    }
+
+    }
+    let arr = ['pink','orange','indianred','silver','gold','skyblue'];
+    let html = '';
+    arr.forEach( (e) => {
+        html += `<div style="background:${e}"></div>`;
+        console.log(html)
+    });
+    body.innerHTML = html;
+
+    //获得可视区的高度
+    let iH = window.innerHeight;
+    console.log(iH)
+    let num = 0;
+    let onoff = false;
+
+
+    Mywheel(window,function(a){
+        if(onoff) return;
+        onoff = true;
+        if(a){
+            num --;
+            if(num<0) num = 0;
+        }else{
+            num ++;
+            if(num>arr.length-1){
+                num = arr.length-1;
+                // num =0;
+            }
+        }
+
+        body.style.transition = '1s';
+        body.style.top = -num * iH + 'px';
+        // console.log(body.style.top)
+        // console.log(num)
+
+        setTimeout(function(){
+            onoff = false;
+        },500);
+
+    })
+    
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#box{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background: orange;
+}
+
+</style>
+</head>
+<body>
+    <div id="box"></div>
+
+<script>
+    let num = 0;
+    let timer = null;
+    window.onkeydown = function(ev){
+        clearInterval(timer);
+        timer = setInterval(function(){
+            switch(ev.keyCode){
+            case 37:
+                num -= 5;
+                if(box.offsetLeft == 0){
+                    box.style.left = '0px';
+                }else{
+                    box.style.left = box.offsetLeft -5 + 'px';
+                }
+            break;
+            case 38:
+            num -= 5;
+                if(box.offsetTop == 0){
+                    box.style.top = '0px';
+                }else{
+                    box.style.top = box.offsetTop -5 + 'px';
+                }
+           
+            break;
+            case 39:
+                num += 5;
+                box.style.left = box.offsetLeft + 5 +'px';
+            break;
+            case 40:
+                num += 5;
+                box.style.top = box.offsetTop + 5 + 'px';
+            break;
+        }
+        box.style.transform = 'rotate(' + num + 'deg)';
+
+        });
+    }
+    window.onkeyup = function(){
+        clearInterval(timer);
+    }
+</script>
+</body>
+</html>

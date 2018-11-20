@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+    function Mywheel(m,fn){
+        if(window.onmousewheel === undefined){  //如果等于undefined就是火狐
+            m.addEventListener('DOMMouseScroll',move);
+        }else{
+            m.addEventListener('mousewheel',move);
+        }
+
+
+        function move(ev){
+            let k = false;
+            if(ev.wheelDelta){
+                k = ev.wheelDelta > 0 ? true: false;
+            }else{
+                k = ev.detail < 0 ? true:false;
+            }
+            fn(k);
+        }
+    }
+
+Mywheel(window,function(a){
+    if(a){
+        alert('上');
+    }else{
+        alert('下')
+    }
+})
+
+    
+</script>  
+</body>
+</html>

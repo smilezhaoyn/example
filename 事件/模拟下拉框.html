@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+ul{
+    width: 200px;
+    border: 1px solid orange;
+    display: none;
+}
+li{
+    list-style: none;
+    line-height: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+}
+li.active{
+    background: yellowgreen;
+    color: #fff;
+}
+
+</style>
+</head>
+<body>
+    <input type="text" name="" id="txt">
+    <ul id="ul"></ul>
+
+<script>
+    let arr = ['会会是额i公使馆为hi是否hi是','你和我给我给我购物','你发我或服务hi给 文化']
+    let html = '';
+    arr.forEach( (e,i) => {
+        html += `
+        <li class="${i==0?'active':''}">${e}</li>`;
+    });
+    ul.innerHTML = html;
+
+    let lis = Array.from(document.getElementsByTagName('li'));
+    let a = lis[0];
+
+    lis.forEach( (e,i) => {
+        e.onmousedown = function(ev){
+            a.className = '';
+            lis[i].className = 'active';
+            a = lis[i];
+            num = i;
+            txt.value = a.innerHTML;
+            // txt.value = lis[i].innerHTML;
+            ul.style.display = 'none';
+            ev.stopPropagation();
+        }
+    });
+
+    txt.onfocus = function(){
+        ul.style.display = 'block';
+    }
+    let num =0;
+    txt.onkeyup = function(ev){
+        switch(ev.keyCode){
+            case 38:
+            num --;
+            if(num< 0){
+                num = arr.length-1;
+            }
+            a.className = '';
+            lis[num].className = 'active';
+            a = lis[num];
+            break;
+
+
+            case 40:
+            num ++;
+            num %=arr.length;
+            a.className = '';
+            lis[num].className = 'active';
+            a = lis[num];
+            break;
+
+            case 13:
+            this.value = a.innerHTML;
+            ul.style.display = 'none';
+            txt.blur();
+            break;
+        }   
+    }
+
+    document.onmousedown = function(){
+        ul.style.display = 'none';
+    }
+</script>
+</body>
+</html>
