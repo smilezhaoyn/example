@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#ul{
+    display: none;  
+    font-size: 12px;
+}
+#ul li{
+    width: 200px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    list-style: none;
+}
+#ul li.active{
+    background: yellowgreen;
+}
+input {
+    width: 230px;
+}
+</style>
+</head>
+<body>
+    <input type="text" id="txt">
+    <ul id="ul"></ul>
+
+<script>
+    //将数据填充到ul中 
+    let arr = [' 做个俗人，不谈亏欠，不负遇见',' 做个俗人，贪财好色，一世风流','从此酒肉穿肠，闭口不怨真心错付','从此洒脱不羁，再也不想今世唯一'];
+    let html = '';
+    arr.forEach((e,i) => {
+        html += `<li class="${i==0 ? 'active':''}"> ${e} </li>`;
+    });
+    ul.innerHTML = html;
+    let lis = Array.from(document.getElementsByTagName('li'));
+    let a = lis[0]; //存一个值
+    txt.onmousedown = function(ev){
+            ul.style.display = 'block';
+            ev.cancelBubble = true;
+        }
+    lis.forEach((e,i) => {
+            e.onmousedown = function(){
+            a.className = '';
+            lis[i].className = 'active';
+            a = lis[i];
+            txt.value = a.innerHTML;
+            console.log(txt.value)
+            ul.style.display = 'none';
+            // ev.cancelBubble = true;
+
+        }
+    });
+    let num = 0
+    txt.onkeyup = function(ev){
+        switch(ev.keyCode){
+
+            case 38:
+            num --;
+            if(num<0){
+                num = arr.length-1;
+            }
+
+            a.className = '';
+            lis[num].className = 'active';
+            a = lis[num];
+            break;
+
+            case 40:
+            num ++;
+            if(num>arr.length-1){
+                num = 0;
+            }
+            a.className = '';
+            lis[num].className = 'active';
+            a = lis[num];
+            break;
+
+            case 13:
+                txt.value = a.innerHTML;
+                ul.style.display = 'none';
+                this.blur();
+                break;
+        }
+    }
+    document.onmousedown = function(){
+        ul.style.display = 'none';
+    }
+
+
+
+// txt.focus();
+</script>
+</body>
+</html>

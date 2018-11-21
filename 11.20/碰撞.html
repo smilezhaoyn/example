@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#box{
+    width: 100px;
+    height: 100px;
+    background: yellow;
+    position:absolute;
+    z-index: 2
+}
+#box2{
+    width: 100px;
+    height: 100px;
+    background: green;
+    position: absolute;
+    left: 300px;
+    top:200px;
+}
+
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="box2"></div>
+
+<script>
+
+    let box = document.getElementById('box');
+    let L = 0;
+    let T = 0;
+    let num = 0;
+
+
+    box.onmousedown = function(ev){
+        L = ev.pageX - box.offsetLeft;
+        T = ev.pageY -box.offsetTop;
+        document.onmousemove = function(ev) {
+
+            if(duang(box,box2)){
+                box2.style.background = 'red';
+            }else{
+                box2.style.background = 'green'
+            }
+
+            box.style.left = ev.pageX - L + 'px';
+            box.style.top = ev.pageY - T + 'px';
+
+        }
+        document.onmouseup = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+        
+        return false;
+    }
+
+    function duang(a1,a2){
+            let L1 = a1.offsetLeft;
+            let T1 = a1.offsetTop;
+            let R1 = L1 + a1.offsetWidth;
+            let B1 = T1 + a1.offsetHeight;
+
+            let L2 = a2.offsetLeft;
+            let T2 = a2.offsetTop;
+            let R2 = L2 + box2.offsetWidth;
+            let B2 = T2 + box2.offsetHeight;
+
+            if(L1>R2 || T1>B2 || R1 < L2 || B1 <T2){
+                return false;
+            }else{
+                return true;
+            }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*******************************************************/
+
+    // box.onmousedown = function(ev){
+
+    //     L = ev.pageX - box.offsetLeft;
+    //     T = ev.pageY - box.offsetTop;
+
+    //     document.onmousemove = function(ev){
+
+    //         //box1
+    //         let L1 = ev.pageX - L;
+    //         let T1 = ev.pageY - T;
+    //         let R1 = L1 + box.offsetWidth;
+    //         let B1 = T1 + box.offsetHeight;
+
+    //         //box2
+
+    //         let L2 = box2.offsetLeft;
+    //         let T2 = box2.offsetTop;
+    //         let R2 = L2 + box2.offsetWidth;
+    //         let B2 = T2 + box2.offsetHeight;
+
+    //         //判断
+
+    //         if(R1<L2 || B1< T2 || L1 > R2 || T1 >B2){
+    //             box2.style.background = 'green';
+    //         }else{
+    //             box2.style.background = 'red';
+    //         }
+
+    //         box.style.left = L1 +'px';
+    //         box.style.top = T1 + 'px';
+    //     }
+    //     document.onmouseup = function(){
+    //         document.onmousemove = null;
+    //         document.onmouseup = null;
+    //     }
+    //     return false;
+
+    // }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #box{
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background: yellowgreen;
+    }
+    
+    </style>
+</head>
+<body>
+    <button id="btn">点击回放</button>
+    <button id="btn1">正放</button>
+    <div id="box"></div>
+
+<script>
+
+    let btn = document.getElementById('btn');
+    let box = document.getElementById('box');
+    let btn1 = document.getElementById('btn1');
+    let arrL = [];
+    let arrT = [];
+    let L = 0;
+    let T = 0;
+    box.onmousedown = function(ev){
+        L = ev.pageX - box.offsetLeft;
+        T = ev.pageY - box.offsetTop;
+
+        document.onmousemove = function(ev){
+            let a = ev.pageX - L;
+            let b = ev.pageY - T;
+            arrL.unshift(a);
+            arrT.unshift(b);
+            console.log(arrT);
+            console.log(arrL)
+            box.style.left = a + 'px';
+            box.style.top = b + 'px';
+        }
+
+        document.onmouseup = function(){
+            document.onmousemove = null;
+            document.onmouseup  = null;
+        }
+        return false;
+    }
+    let timer = null;
+    let num = 0;
+    btn.onclick = function(){
+        timer = setInterval( ()=>{
+            console.log(num)
+            box.style.left = arrL[num] + 'px';
+            box.style.top = arrT[num] + 'px';
+            num ++;
+
+            if(num > arrL.length-1){
+                num = 0;
+                clearInterval(timer);
+                arrL = [];
+                arrT = [];
+            }
+        },20);
+
+    }
+
+
+        btn1.onclick = function(){
+        num = arrL.length-1;
+        timer = setInterval( ()=>{
+            
+            box.style.left = arrL[num] + 'px';
+            box.style.top = arrT[num] + 'px';
+           
+            num --;
+            if(num < 0){
+                num = 0;
+                clearInterval(timer);
+                arrL = [];
+                arrT = [];
+            }
+        },20);
+
+    }
+
+</script>
+</body>
+</html>

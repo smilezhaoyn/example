@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#box{
+    width: 100px;
+    height: 100px;
+    background: violet;
+    position: absolute;
+}
+
+</style>
+</head>
+<body>
+    <div id="box"></div>
+
+<script>
+
+        class Par {
+            constructor(id){
+                this.box  = document.getElementById(id);
+                this.L = 0;
+                this.T = 0;
+                this.M = this.move.bind(this);
+                this.U = this.up.bind(this);
+            }
+            init(){
+                box.addEventListener('mousedown',this.down.bind(this));
+            }
+            down(ev){
+                this.L = ev.pageX - box.offsetLeft;
+                this.T = ev.pageY - box.offsetTop;
+                document.addEventListener('mousemove',this.M);
+                document.addEventListener('mouseup',this.U);
+            }
+            move(ev){
+               this.box.style.left = ev.pageX - this.L + 'px';
+               this.box.style.top = ev.pageY - this.T + 'px'; 
+            }
+            up(){
+                document.removeEventListener('mousemove',this.M);
+                document.removeEventListener('mouseup',this.U);
+            }
+        }
+
+        let  p = new Par('box');
+        p.init();
+</script>
+</body>
+</html>

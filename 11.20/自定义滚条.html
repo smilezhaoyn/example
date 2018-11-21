@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#div1{
+    width: 10px;
+    height: 200px;
+    border-radius: 5px;
+    background: yellowgreen;
+    margin-left: 50px;
+    position: relative;
+}
+#div2{
+    width: 10px;
+    height: 20px;
+    border-radius: 5px;
+    background:orange;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+#div3{
+    width: 200px;
+    height: 200px;
+    background: violet;
+    position: absolute;
+    left: 100px;
+    top:0;
+}
+
+</style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+    <div id="div3"></div>
+
+
+<script>
+
+    let div1 = document.getElementById('div1');
+    let div2 = document.getElementById('div2');
+    let div3 = document.getElementById('div3');
+    
+    div2.onmousedown = function(ev){
+        let T = ev.pageY - div2.offsetTop;
+
+        document.onmousemove = function(ev){
+            let Top = ev.pageY - T;
+
+            if(Top<0) Top = 0;
+            if(Top>div1.offsetHeight-div2.offsetHeight){
+                Top = div1.offsetHeight-div2.offsetHeight;
+            }
+
+            let biL  = Top/(div1.offsetHeight-div2.offsetHeight);
+
+            div3.style.height = biL *200 + 'px';
+            div3.style.width = biL * 200 + 'PX';
+
+            div2.style.top = Top + 'px';
+        }
+        document.onmouseup = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#box{
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    /* float: left; */
+}
+#box2{
+    width: 100px;
+    height: 100px;
+    border: 4px sandybrown solid;
+    position: absolute;
+    left: 400px;
+}
+</style>
+</head>
+<body>
+   <div id="box"></div> 
+   <div id="box2"></div>
+
+<script>
+
+    class Pere{
+        constructor(a1,a2){
+            this.box = document.getElementById(a1);
+            this.box2 = document.getElementById(a2);
+            this.Left = 0;
+            this.Top = 0;
+            this.M = this.move.bind(this);
+            this.U = this.up.bind(this);
+            this.box2L = this.box2.offsetLeft + this.box2.clientLeft;
+            this.box2T = this.box2.offsetTop + this.box2.clientTop;
+            this.onOff = false;
+        }
+        init(){
+            // document.addEventListener('keydown',this.key.bind(this));
+            this.box.addEventListener('mousedown',this.down.bind(this));
+            
+        }
+        down(ev){ //获取到一小节
+            this.Left = ev.pageX - this.box.offsetLeft;
+            this.Top = ev.pageY - this.box.offsetTop;
+            document.addEventListener('mousemove',this.M);
+            document.addEventListener('mouseup',this.U);
+           
+        }
+        // key(ev){
+        //     switch(ev.keyCode){
+        //         case 39:
+        //         document.addEventListener('mousemove',this.M);
+        //         console.log(1)
+        //         break;
+        //     }
+        //     ev.preventDefault();
+           
+        // }
+        move(ev){
+            let L1 = ev.pageX - this.Left;
+            let T1 = ev.pageY - this.Top;
+
+            if(Math.abs(L1 - this.box2L)<5 && Math.abs(T1 - this.box2T)<5){
+                this.onOff = true
+                L1 = this.box2L;
+                T1 = this.box2T;
+            }else{
+                this.onOff = false;
+            }
+            box.style.left = L1 + 'px';
+            box.style.top =T1+ 'px';
+        }
+        up(){
+            if(this.onOff){
+                console.log('吻合');
+            }else{
+                console.log('不吻合')
+            }
+            document.removeEventListener('mousemove',this.M);
+            document.removeEventListener('mouseup',this.U);
+        }
+
+    }
+
+    let p = new Pere('box','box2');
+    p.init();
+
+</script>
+</body>
+</html>
