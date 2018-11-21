@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width: 100px;
+    height: 100px;
+    background: yellowgreen;
+    position: absolute;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+</style>
+</head>
+<body>
+   <div id="box"></div> 
+
+<script>
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    let obj = {
+        37:false,
+        38:false,
+        39:false,
+        40:false
+    }
+ 
+    document.onkeydown = function(ev){
+        
+        switch(ev.keyCode){
+            case 37:
+                obj[37] = true;
+                box.style.left = box.offsetLeft - 5 + 'px';
+                if(box.offsetLeft<=0){
+                    box.style.left = '0px';
+                }
+            break;
+
+            case 38:
+                obj[38] = true;
+                box.style.top = box.offsetTop -5 + 'px';
+                if(box.offsetTop<=0){
+                    box.style.top = '0px';  
+                }
+            break;
+
+            case 39:
+                obj[39] = true;
+                box.style.left = box.offsetLeft + 5 + 'px';
+                if(box.offsetLeft >= W){
+                    box.style.left = W + 'px';
+                    console.log(box.style.left)
+                }
+            break;
+
+            case 40:
+                obj[40] = true;
+                box.style.top = box.offsetTop + 5 + 'px';
+                if(box.offsetTop >=H){
+                    box.style.top = H + 'px';
+                }
+            break;
+        }
+
+
+        document.onkeyup = function(ev){
+
+            switch(ev.keyCode){
+                case 37:
+                obj[37] = false;
+                break;
+
+                case 38:
+                obj[38] = false;
+                break;
+
+                case 39:
+                obj[39] = false;
+                break;
+
+                case 40:
+                obj[40] = false;
+                break;
+
+            }    
+
+        }
+        
+
+        if(obj[37] && obj[38]){
+            box.style.left = box.offsetLeft - 5 + 'px';
+            box.style.top = box.offsetTop -5 + 'px';
+        }
+
+        if(obj[38] && obj[39]){
+            box.style.top = box.offsetTop -5 + 'px';
+            box.style.left = box.offsetLeft + 5 + 'px';
+        }
+        if(obj[39] && obj[40]){
+            box.style.left = box.offsetLeft + 5 + 'px';
+            box.style.top = box.offsetTop + 5 + 'px';
+        }
+        if(obj[40] && obj[37]){
+            box.style.top = box.offsetTop + 5 + 'px';
+            box.style.left = box.offsetLeft - 5 + 'px';
+        }
+        console.log(obj)
+    }
+
+
+
+</script>
+</body>
+</html>

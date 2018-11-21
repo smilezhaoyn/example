@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #div1{
+        width: 10px;
+        height: 200px;
+        border-radius: 5px;
+        position: relative;
+        background: yellowgreen;
+        margin-left: 100px;
+    }
+    #div2{
+        width: 10px;
+        height: 20px;
+        border-radius: 5px;
+        background: orange;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    #div3{
+        width: 200px;
+        height: 200px;
+        background: orangered;
+        position: absolute;
+        left: 200px;
+        top:0;
+    } 
+    </style>
+</head>
+<body>
+<div id="div1">
+    <div id="div2"></div>
+</div>
+<div id="div3"></div>
+
+<script>
+    div2.onmousedown = function(ev){
+        let T = ev.pageY - div2.offsetTop;  //点击时候得到一小节
+
+        document.onmousemove = function(ev){
+            let Ju = ev.pageY - T;
+
+            if(Ju<0) Ju =0;
+            if(Ju>div1.offsetHeight - div2.offsetHeight){
+                Ju = div1.offsetHeight - div2.offsetHeight;
+            }
+            let biL = Ju / (div1.offsetHeight-div2.offsetHeight);
+
+            div3.style.height = biL * 200 + 'px';
+            div3.style.width = biL * 200 + 'px';
+            div2.style.top = Ju + 'px';
+
+        }
+        document.onmouseup = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    }
+
+    //滚轮事件
+
+    function Gunlun(box,fn){
+        if(window.onmousewheel === undefined){ //火狐
+            box.addEventListener('DOMMouseScroll',move);
+        }else{
+            box.addEventListener('mousewheel',move);
+        }
+
+        function move(ev){
+            let A = false; //假设false向下，true向上
+            if(ev.wheelDelta){
+                A = ev.wheelDelta > 0 ? true : false;
+            }else{
+                A = ev.detail < 0 ? true : false;
+            }
+
+            fn(A)
+        }
+
+    }
+
+    Gunlun(div1,function(A){
+
+        let t = div2.offsetTop;
+
+        if(A){
+            t -= 5;
+            if(t < 0) t = 0;
+        }else{
+            t+=5;
+            if(t > div1.offsetHeight - div2.offsetHeight){
+                t = div1.offsetHeight - div2.offsetHeight;
+            }
+        }
+        
+
+        let biL = t / (div1.offsetHeight-div2.offsetHeight);
+
+        div3.style.height = biL * 200 + 'px';
+        div3.style.width = biL * 200 + 'px';
+        div2.style.top = t + 'px';
+
+    });
+
+</script>
+</body>
+</html>
