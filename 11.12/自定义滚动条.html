@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#box1{
+    width: 200px;
+    height: 200px;
+    border: 1px solid #000;
+    position: absolute;
+}
+#box2{
+    width: 100%;
+    position: absolute;
+}
+#gun1{
+    width: 10px;
+    height: 200px;
+    background: yellowgreen;
+    border-radius: 5px;
+    opacity: .5;
+    left: 208px;
+    position: absolute;
+}
+#xiao{
+    width: 10px;
+    position: absolute;
+    height: 20px;
+    border-radius: 5px;
+    background:rgb(230, 110, 13,1);
+    z-index: 10;
+}
+body{
+    overflow: hidden;
+}
+
+
+</style>
+</head>
+<body>
+    <div id="box1">
+        <div id="box2">
+            <p> 1、总想赢者必输，不怕输者必赢。</p>
+
+            <p>2、令狐冲说：“有些事情本身我们无法控制，只好控制自己。”</p>
+
+            <p>3、考前两个月就是冲刺。养兵千日，用兵一时。</p>
+
+            <p>4、更快、更高、更强。领先就是金牌。</p>
+
+            <p>5、成功的母亲是失败，成功的父亲是汗水。</p>
+
+            <p>6、面对目标，信心百倍，人生能有几次搏？面对成绩，心胸豁达，条条大陆通罗马</p>
+
+            <p>7、如果敌人让你生气，那说明你还没有胜他的把握，如果朋友让你生气，那说明你仍然在意他的友情。</p>
+            <p> 1、总想赢者必输，不怕输者必赢。</p>
+
+            <p>2、令狐冲说：“有些事情本身我们无法控制，只好控制自己。”</p>
+
+            <p>3、考前两个月就是冲刺。养兵千日，用兵一时。</p>
+
+            <p>4、更快、更高、更强。领先就是金牌。</p>
+
+            <p>5、成功的母亲是失败，成功的父亲是汗水。</p>
+
+            <p>6、面对目标，信心百倍，人生能有几次搏？面对成绩，心胸豁达，条条大陆通罗马</p>
+
+            <p>7、如果敌人让你生气，那说明你还没有胜他的把握，如果朋友让你生气，那说明你仍然在意他的友情。</p>
+            <p> 1、总想赢者必输，不怕输者必赢。</p>
+
+            <p>2、令狐冲说：“有些事情本身我们无法控制，只好控制自己。”</p>
+
+            <p>3、考前两个月就是冲刺。养兵千日，用兵一时。</p>
+
+            <p>4、更快、更高、更强。领先就是金牌。</p>
+
+            <p>5、成功的母亲是失败，成功的父亲是汗水。</p>
+
+            <p>6、面对目标，信心百倍，人生能有几次搏？面对成绩，心胸豁达，条条大陆通罗马</p>
+
+            <p>7、如果敌人让你生气，那说明你还没有胜他的把握，如果朋友让你生气，那说明你仍然在意他的友情。</p>
+            
+        </div>
+        <div id="gun1">
+            <div id="xiao"></div>
+        </div>
+    </div>
+
+
+<script>
+
+    class Per{
+        constructor(id,box2){
+
+            function $(ele){
+                return document.getElementById(ele);
+            }
+            this.box = $(id);
+            this.box2 = $(box2);
+            this.xiao = $('xiao');
+            this.box1 = $('box1');
+            this.gun1 = $('gun1');
+            this.Top = 0;
+            this.M = this.move.bind(this);
+            this.U = this.up.bind(this);
+        }
+
+        init(){
+            this.box.addEventListener('mousedown',this.down.bind(this));
+            this.boxH();
+        }
+        boxH(){
+             /*给xiao加高度，根据内容判断*/
+             let a = this.box2.scrollHeight; //盒子被撑开的高度
+             let b = this.gun1.offsetHeight; //gun1的高度
+             let c = this.box1.clientHeight; //box1盒子的高度
+             if(a<c){
+                 this.gun1.style.display = 'none';
+             }else{
+                 this.gun1.style.display = 'block';      
+             } 
+             let xiaoH = (b *c)/a ;
+             if(xiaoH< 20){
+                xiaoH = 20;
+             }
+             this.xiao.style.height =xiaoH + 'px';
+        }
+        down(ev){
+            this.Top = ev.pageY - this.box.offsetTop;
+            this.box1.addEventListener('mousemove',this.M);
+            document.addEventListener('mouseup',this.U);
+            // ev.preventDefault();
+        }
+        move(ev){
+            let t = ev.pageY - this.Top;
+            if(t < 0){
+                t = 0;
+            };
+            if(t > this.gun1.offsetHeight - this.xiao.offsetHeight){
+                t = this.gun1.offsetHeight - this.xiao.offsetHeight;
+            }
+            this.box.style.top = t + 'px';
+            
+            let xH = this.xiao.offsetTop;
+            let gH = this.gun1.offsetHeight;
+            let b2H = this.box2.scrollHeight;
+            let b1H = this.box1.clientHeight;
+            // console.log(b1H,b2H)
+            let biL = xH/(gH - this.xiao.offsetHeight);            
+            this.box2.style.top = biL * (b1H -b2H) + 'px';
+
+        }
+        up(){
+            this.box1.removeEventListener('mousemove',this.M);
+            document.removeEventListener('mouseup',this.U);     
+
+        }
+    }
+    let p = new Per('xiao','box2');
+    p.init();
+
+    Roller(document,function(A){
+        let t = xiao.offsetTop;
+        if(A){
+            t-=10;
+            if(t < 0){
+                t = 0;
+            };
+
+        }else{
+            t += 10;
+            if(t > gun1.offsetHeight - xiao.offsetHeight){
+                t = gun1.offsetHeight - xiao.offsetHeight;
+            }
+           
+        }
+
+        let scale = t/(gun1.offsetHeight - xiao.offsetHeight);
+        box2.style.top =  (box1.clientHeight - box2.scrollHeight)  * scale + 'px';   
+
+        xiao.style.top = t + 'px';
+
+    });
+    function Roller(box,fn){
+        if(window.onmousewheel === undefined){  //说明是一个火狐
+            box.addEventListener('DOMMouseScroll',move);
+        }else{
+            box.addEventListener('mousewheel',move);
+        }
+
+        function move(ev){
+            let A = false;
+            if(ev.wheelDelta){
+                A = ev.wheelDelta >0 ? true :false;
+            }else{
+                A = ev.detail < 0 ? true :false;
+            }
+            fn(A);
+        }
+
+    }
+
+</script>
+</body>
+</html>

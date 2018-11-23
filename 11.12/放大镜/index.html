@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#box{
+    width: 400px;
+    height: 400px;
+    position: relative;
+    border: 1px solid black;
+    float: left;
+}
+#box img{
+    width: 100%;
+    height: 100%;
+}
+#kuai{
+    width: 200px;
+    height: 200px;
+    background: red;
+    opacity: .3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: move;
+    display: none;
+}
+
+#bigBox{
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+    position: absolute;
+    overflow: hidden;
+    margin-left: 500px;
+    display: none;
+}
+#bigBox img{
+    position: absolute;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <img src="img/iphone.jpg" alt="">
+        <div id="kuai"></div>
+    </div>
+    <div id="bigBox">
+        <img src="img/iphone_big.jpg" alt="" id="img">
+    </div>
+
+<script>
+
+    box.addEventListener('mouseenter',function(){
+        kuai.style.display = 'block';
+        bigBox.style.display = 'block';
+
+    });
+    box.addEventListener('mouseleave',function(){
+        kuai.style.display = 'none';
+        bigBox.style.display = 'none';
+    });
+
+    class Per{
+        constructor(){
+            function $(ele){
+                return document.getElementById(ele);
+            }
+            this.box = $('box');
+            this.kuai = $('kuai');
+            this.bigBox = $('bigBox');
+            this.img2= $('img');
+            this.MoveL = 0;
+            this.MoveT = 0;
+
+        }
+
+        init(){
+            this.box.addEventListener('mousemove',this.move.bind(this));
+        }
+        move(ev){
+            this.MoveL = ev.pageX - (this.kuai.clientWidth/2);
+            this.MoveT = ev.pageY - (this.kuai.clientHeight/2);
+            if( this.MoveL<0)  this.MoveL = 0;
+            if( this.MoveL > this.box.offsetWidth - this.kuai.offsetWidth -2*this.box.clientLeft){
+                this.MoveL = this.box.offsetWidth - this.kuai.offsetWidth -2*this.box.clientLeft;
+            }
+
+            if(this.MoveT<0) this.MoveT = 0;
+            if(this.MoveT > this.box.offsetHeight - this.kuai.offsetHeight - 2*this.box.clientTop){
+                this.MoveT = this.box.offsetHeight - this.kuai.offsetHeight - 2*this.box.clientTop;
+            }
+
+            this.kuai.style.left = this.MoveL + 'px';
+            this.kuai.style.top =  this.MoveT+ 'px';
+
+            this.imgmove();
+        }
+        imgmove(){
+            let a = (this.box.offsetWidth / this.kuai.offsetWidth)* this.box.offsetWidth;
+            let b = (this.box.offsetHeight / this.kuai.offsetHeight)* this.box.offsetHeight;
+            this.img2.style.width = a + 'px';
+            this.img2.style.height =b  + 'px';
+            let biL = this.kuai.offsetLeft/ (this.box.offsetWidth - this.kuai.offsetWidth/2 -2*this.box.clientLeft);
+            let biT = this.kuai.offsetTop /(this.box.offsetHeight - this.kuai.offsetHeight/2 - 2*this.box.clientTop);
+            this.img2.style.left = -biL * a + 'px';
+            this.img2.style.top = - biT * b + 'px';
+
+
+        }
+    }
+
+    let p = new Per();
+    p.init();
+
+</script>
+</body>
+</html>

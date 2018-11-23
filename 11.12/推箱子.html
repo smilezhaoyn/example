@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#box{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background: violet;
+}
+
+</style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    let timer = null;
+    let obj = {
+        37:false,
+        38:false,
+        39:false,
+        40:false
+    };
+    let onOff = false;
+    window.onkeydown = function(ev){
+        obj[ev.keyCode] = true;
+        if(onOff){
+            return;
+        }
+        onOff = true;
+        console.log(1)
+        move();
+    }
+    window.onkeyup = function(ev){
+        obj[ev.keyCode] = false;
+        let arr = [];
+        for(let attr in obj){
+            arr.push(obj[attr])
+        }
+        
+        let a = arr.every((e)=> e == false);
+        if(a){
+            cancelAnimationFrame(timer);
+            onOff = false;
+        }
+        
+    }
+    function move(ev){
+
+        (function animate(){
+            timer = requestAnimationFrame(animate);
+                if(obj[37]){
+                box.style.left = box.offsetLeft -5 + 'px';
+                }
+                if(obj[38]){
+                    box.style.top = box.offsetTop -5 + 'px';
+                }
+                if(obj[39]){
+                    box.style.left = box.offsetLeft + 5 + 'px';
+                }
+                if(obj[40]){
+                    box.style.top = box.offsetTop +5 + 'px';
+                }
+        })();
+        
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

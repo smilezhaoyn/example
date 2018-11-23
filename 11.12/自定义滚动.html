@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+#box1{
+    width: 10px;
+    height: 200px;
+    position: absolute;
+    border-radius: 5px;
+    background: yellowgreen;
+}
+#box2{
+    width: 10px;
+    background: yellow;
+    position:absolute;
+    height: 20px;
+    border-radius: 5px;
+    top: 0;
+    left: 0;
+}
+#box3{
+    width: 200px;
+    height: 200px;
+    /* background: violet; */
+    border: 1px solid #000;
+    position: absolute;
+    left: 60px;
+}
+#div4{
+    width: 100%;
+    position: absolute;
+}
+body{
+    overflow: hidden;
+}
+</style>
+</head>
+<body>
+    <div id="box1">
+        <div id="box2"></div>
+    </div>
+    <div id="box3">
+        <div id="div4">
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                金融虎讯11月22日凌晨消息，昨日，意
+                
+        </div>
+    </div>
+
+<script>
+
+                //设定box2的高度
+
+                let a1 = box1.offsetHeight;
+                let a2 = box3.offsetHeight;
+                let a4 = div4.scrollHeight;
+
+                //求box2的高度
+
+                let h = a1 *(a2/a4);
+                console.log(h)
+                if(h<20) h = 20;
+                box2.style.height = h + 'px';
+
+            /********************************/
+            
+
+
+
+
+
+
+    box2.addEventListener('mousedown',function(ev){
+        let Top = ev.pageY - box2.offsetTop;
+        let move = function(ev){
+            let Yid = ev.pageY - Top;//得到一小节
+            //判断是在box1的高度中，不能超过
+
+            if(Yid <=0) Yid = 0;
+            if(Yid > box1.offsetHeight - box2.offsetHeight){
+                Yid =  box1.offsetHeight - box2.offsetHeight;
+            }
+            let biL = Yid / (box1.offsetHeight - box2.offsetHeight);
+            if(box3.offsetHeight >= div4.scrollHeight){
+                div4.style.top = '0px';
+                box1.style.top = '0px';
+            }else{
+                div4.style.top = (box3.clientHeight - div4.scrollHeight)*biL + 'px';
+                box2.style.top = Yid + 'px';
+            }
+            
+            // box3.style.top = -biL * box3.offsetHeight + 'px';
+            // box3.style.width = -biL * box3.offsetWidth + 'px';
+        }
+        let up = function(){
+            document.removeEventListener('mousemove',move);
+            document.removeEventListener('mouseup',up)
+        }
+        document.addEventListener('mousemove',move);
+        document.addEventListener('mouseup',up)
+        ev.preventDefault();
+    });
+
+    //调用滚动方法
+    Mygui(document,function(A){
+        let t = box2.offsetTop;
+
+       if(A){
+
+            t -= 10;
+            if(t<0) t = 0;
+            
+       }else{
+
+           t+=10;
+            if(t>box1.offsetHeight - box2.offsetHeight){
+                t = box1.offsetHeight - box2.offsetHeight
+            }
+           
+       }
+       if(box3.offsetHeight >= div4.scrollHeight){
+                div4.style.top = '0px';
+                box1.style.top = '0px';
+            }else{
+                let biL = t / (box1.offsetHeight - box2.offsetHeight);
+                div4.style.top = (box3.clientHeight - div4.scrollHeight)*biL  + 'px';
+                box2.style.top = t + 'px';
+            }   
+            
+
+
+        
+
+
+    });
+
+
+            if(box3.offsetHeight >= div4.scrollHeight){
+                box1.style.display = 'none';
+            }else{
+                box1.style.display = 'block';
+            }   
+    //滚轮滚动方法
+  
+    function Mygui(box,fn){
+        if(window.onmousewheel === undefined){  //为undefined就是火狐
+            box.addEventListener('DOMMouseScroll',move);
+        }else{
+            box.addEventListener('mousewheel',move);
+        }
+        function move(ev){
+            let A = false;  //true是向上   false是向下
+                if(ev.wheelDelta){  //谷歌
+                    A = ev.wheelDelta >0 ?true:false;
+                }else{
+                    A = ev.detail < 0 ?true :false;
+                }
+                //回调函数
+                fn(A);
+        }
+
+
+    }
+
+
+</script>
+</body>
+</html>

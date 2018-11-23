@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+#ul{
+    list-style: none;
+}
+li{
+    float: left;
+    font-size: 12px;
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    border: 1px solid #000;
+}
+input{
+    width: 110px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<ul id="ul">
+    <!-- <li>
+        <img src="img.png" alt="">
+        <p>ngiejiegj</p>
+         <input type="text" placeholder="新建文件"> 
+    </li> -->
+</ul>
+<button id="btn">点击创建文件夹</button>
+
+<script>
+let arr = [
+        {
+            title:'我的文档',
+            id:0
+        },
+        {
+            title:'我的音乐',
+            id:1
+        },
+        {
+            title:'我的游戏',
+            id:2
+        }
+    ];
+
+    function Fill(){
+        let html = '';
+        arr.forEach( (e) =>{
+            html += `
+            <li>
+            <img src="img.png" alt="">
+            <p>${e.title}</p>
+            </li>
+            
+            `;
+        });
+        ul.innerHTML = html;
+    }
+    Fill();
+    let arr2 = []
+    btn.onclick = function(){
+        let li = document.createElement('li');
+        let v = '';
+        if(!arr.length){
+            arr2[0] = 0;
+        }else{
+
+            for(let i = 0;i<arr2.length+1;i++){
+                if(arr2[i] === undefined){
+                    arr2[i] = i;
+                    v = i;
+                    break;
+                }
+            }
+        }
+        li.innerHTML = `
+        <img src="img.png" alt="">
+        <div><input type="text" value="新建文件"></div>
+        `;
+        let txt = li.getElementsByTagName('input')[0];
+        ul.appendChild(li);
+        txt.select();
+        txt.onblur = function(){
+            arr.push({
+                title:txt.value,
+                id:new Date()
+            });
+            Fill();
+        }
+    }
+
+</script>
+</body>
+</html>

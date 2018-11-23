@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#box{
+    width: 350px;
+    height: 350px;
+    position: relative;
+    border: 1px solid #000;
+    float: left;
+}
+#box img{
+    width: 100%;
+    height: 100%;
+}
+#kuai{
+    width: 175px;
+    height: 175px;
+    position: absolute;
+    cursor: move;
+    top: 0;
+    left: 0;
+    opacity: .5;
+    /* display: none; */
+    background: red;
+}
+#bigBox{
+    width: 350px;
+    height: 350px;
+    border:  1px solid #000;
+    position:absolute;
+    overflow: hidden;
+    /* display: none; */
+    left: 400px;
+}
+#bigBox img{
+    position: absolute;
+    width: 700px;
+    height: 700px;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <img src="img/iphone.jpg" alt="">
+        <div id="kuai"></div>
+    </div>
+    <div id="bigBox">
+        <img src="img/iphone_big.jpg" alt="" id="img">
+    </div>
+
+<script>
+box.onmouseenter = function(){
+    kuai.style.display = 'block';
+    bigBox.style.display = 'block';
+}
+box.onmouseleave = function(){
+    kuai.style.display = 'none';
+}
+
+let {right,bottom} = box.getBoundingClientRect();
+console.log(bottom)
+
+box.onmousemove= function(ev){
+    let l = ev.pageX - (kuai.clientWidth/2);
+    let t = ev.pageY - (kuai.clientHeight/2);
+
+    if(l<0) l =0;
+
+    if(l > right -kuai.clientWidth){
+        l = right -kuai.clientWidth - 2;
+    }
+    if(t<0) t =0;
+    if(t > bottom -kuai.clientHeight){
+        t = bottom -kuai.clientHeight - 2 ;
+    }
+    let biL = l / (right -kuai.clientWidth -2);
+    let biT = t / (bottom -kuai.clientHeight -2);
+    img.style.left = (bigBox.clientWidth - img.offsetWidth) * biL + 'px';
+    img.style.top = (bigBox.clientHeight - img.offsetHeight) * biT + 'px';
+    kuai.style.left = l + 'px';
+    kuai.style.top = t + 'px';
+
+
+
+}
+
+
+
+</script>
+</body>
+</html>

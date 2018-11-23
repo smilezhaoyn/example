@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+#kuang{
+    width: 0;
+    height: 0;
+    background: yellowgreen;
+    opacity: .3;
+    position:absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+</style>
+</head>
+<body>
+   <div id="kuang"></div> 
+<script>
+    document.onmousedown = function(ev){
+        kuang.style.display = 'block';
+        let L =  ev.pageX;
+        let T = ev.pageY;
+        kuang.style.left = L + 'px';
+        kuang.style.top = T + 'px';
+
+        document.onmousemove = function(ev){
+            let left = Math.min(L,ev.pageX);
+            let top = Math.min(T,ev.pageY);
+
+            kuang.style.width = Math.abs(ev.pageX-L) + 'px';
+            kuang.style.height = Math.abs(ev.pageY - T) + 'px';
+
+            kuang.style.left = left + 'px';
+            kuang.style.top = top + 'px';
+        }
+        document.onmouseup = function(){
+            kuang.style.display = 'none';
+            kuang.style.width = kuang.style.height = 0;
+            document.onmousemove = document.onmouseup = null;
+        }
+    }
+
+
+</script>
+</body>
+</html>
