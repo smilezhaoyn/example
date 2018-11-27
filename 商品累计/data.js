@@ -1,0 +1,27 @@
+var arr = [
+    {
+        num:0,
+        price:10.5,
+        sum:0
+    },
+    {
+        num:0,
+        price:12.5,
+        sum:0
+    },
+    {
+        num:0,
+        price:8.5,
+        sum:0
+    },
+    {
+        num:0,
+        price:5.5,
+        sum:0
+    },
+    {
+        num:0,
+        price:250,
+        sum:0
+    },
+];
