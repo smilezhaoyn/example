@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    html,body{
+		    	width: 100%;
+		    	height: 100%;
+		    	margin: 0;
+		    }
+		    body{
+		    	background: url(img/zpbg.png) no-repeat center center;
+		    	background-size: cover;
+		    	display: flex;
+		    }
+		    ul,li{
+		    	margin: 0;
+		    	padding: 0;
+		    	list-style: none;
+		    }
+		    p{
+		    	margin: 0;
+		    }
+		    a{
+		    	text-decoration: none;
+		    	color:#b6bdcf;
+		    }
+		    #content{
+		    	width: 700px;
+		    	height: 460px;
+		    	border-radius: 10px;
+		    	border: 1px solid #30343f;
+		    	margin: auto;
+		    	background:  no-repeat 25px 25px #252934;
+		    	box-sizing: border-box;
+		    	padding: 84px 0px 0px 25px;
+		    }
+		    #leftList{
+		    	float: left;
+		    	width: 60px;
+		    	padding-right: 12px;
+		    	height: 100%;
+		    	background: url(img/leftListBg.png) no-repeat right top;
+		    }
+		    #leftList li{
+		    	text-align: right;
+		    	height: 68px;
+		    	padding-top: 12px;
+		    	color: #6a7686;
+		    	font: 10px/18px "微软雅黑";
+		    }
+		    #leftList li span{
+		    	font-size: 12px;
+		    	display: block;
+					cursor: pointer;
+		    }
+		    #leftList .active span{
+		    	color: #ff2c4f;
+		    }
+		    #right{
+		    	width: 600px;
+		    	height: 100%;
+		    	float: left;
+		    }
+		    #rightList li{
+		    	height: 82px;
+		    	width: 100%;
+		    	box-sizing: border-box;
+		    	padding: 20px 25px 20px 30px;
+		    	position: relative;
+					cursor: pointer;
+		    }
+		    #rightList li:hover{
+		    	background-color: #1e212a;
+		    }
+		    #rightList li:hover .num{
+		    	color: #ff2c4f;
+		    }
+		    #rightList li:hover:before{
+		    	content: "";
+		    	width: 2px;
+		    	height: 54px;
+		    	position: absolute;
+		    	background-color: #ff2c4f;
+		    	left: -3px;
+		    	top: 10px;
+		    }
+		    #rightList li:after{
+		    	content: "";
+		    	width: 543px;
+		    	height: 1px;
+		    	position: absolute;
+		    	bottom: 0px;
+		    	right: 25px;
+		    	background:url(img/lineBg.png) repeat-x;
+		    }
+		    #rightList .num{
+		    	font-size: 30px;
+		    	font-family: arial;
+		    	color:#6a7686;
+		    	float: left;
+		    	width: 36px;
+		    	height: 40px;
+		    	border-right: 1px solid #303642;
+		    }
+		    #rightList .list{
+		    	float: left;
+		    	width: 500px;
+		    	margin-left: 6px;
+		    	font-size: 14px;
+		    	color: #b6bdcf;
+		    	font-family: "微软雅黑";
+		    }
+		    #rightList .list span{
+		    	float: left;
+		    }
+		    
+		    .list>a:nth-of-type(1){
+		    	height: 26px;
+		    	float: none;
+		    	font-size: 14px;
+		    }
+		    .job{
+		    	margin-right: 15px;
+		    }
+		    #rightList .list time{
+		    	float: right;
+		    	color: #606a7a;
+		    }
+		    .list .text{
+		    	float: left;
+		    	width: 430px;
+		    	overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+		    }
+		    .list a{
+		    	float: right;
+		    	font-size: 12px;
+		    }
+		    nav{
+		    	font-size: 0px;
+		    	text-align: center;
+		    }
+		    nav a{
+		    	font: 12px/46px "微软雅黑";
+		    	display: inline-block;
+		    	vertical-align: middle;
+		    	width: 24px;
+		    }
+		    nav a.active{
+		    	color: #eb2a4b;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<ul id="leftList">
+				<li 
+					v-for="(val,key) in arr.list"
+					:class="{active:val.lx==type}"
+					@click="leftClick(val.lx)"
+				><span>{{val.text}}</span>{{val.eng}}</li>
+			</ul>
+			<div id="right">
+				<ul id="rightList">				
+					 <li 
+						 v-for="(val,key) in change"
+					 >
+						<span class="num">{{num(key)}}</span>
+						<div class="list">
+							<a :href="hashDate(key)">
+								<span class="job">职位需求：{{val.zw}}</span>
+								<span>需求人数：{{val.rs}}名</span>
+								<time>{{val.sj[0]}}-{{val.sj[1]}}-{{val.sj[2]}}</time>
+								<p>
+										<span class="text">{{val.info[0].t}}：{{val.info[0].l}}</span>
+										<span style="float:right;font-size: 12px">查看详情>></span>
+								</p>
+							</a>
+							
+							
+						</div>
+					</li>
+				
+				</ul>
+				<nav id="nav">
+					<a href="javascript:;"
+						@click="pageClick(--page)"
+					>&lt;</a>
+					<a href="javascript:;"
+						v-for="(val,key) in pagecon"
+						:class="{active:key+1 == page}"
+						@click="pageClick(val)"
+					>{{val}}</a>
+					<a href="javascript:;"
+						@click = 'pageClick(++page)'
+					>&gt;</a>
+				</nav>
+			</div>
+		</div>
+<script src="./js/data.js"></script>
+<script src="./vue.js"></script>
+<script>	
+// console.log(data)
+	new  Vue({
+		el:'#content',
+		data:{
+			arr:data,
+			type:'sh',
+			page:1,
+			size:4,
+			pagecon:'',
+			index: 0
+		},
+		methods:{
+			hashDate(key){
+				let index = this.num(key);
+				return 'main.html'+ window.location.hash + '&data=' + index;
+			},
+			//拿到  数据前边的  1 2 3 4 
+			num(key){
+				return (this.page-1)*this.size + key + 1;
+			},
+			leftClick(ty){
+				//每次切换校园和社会的时候  给this.page初始化为1 
+				// 不然  hash值不变 会找不到对应的数据
+				this.page = 1;
+				this.type = ty;
+				window.location.hash = 'type=' + this.type + '&p='+ this.page;
+			},
+			pageClick(val){
+				if(val <= 1){
+					val = 1;
+				}
+				if(val >= this.pagecon){
+					val = this.pagecon;
+				}
+				//点击页数的时候  把当前页数的值给  this.page 并且赋值给hash上边
+				this.page = val;
+				window.location.hash = 'type=' + this.type + '&p='+ this.page;
+
+			}
+		},
+		//上来就调用一次  以后就不调用了
+		created(){
+			if(!window.location.hash){
+				window.location.hash = 'type=' + this.type + '&p='+ this.page;
+			}
+			//为什么这里加了判断之后  一刷新就回到了最开始的设置的值了？
+			// else{
+			// 	window.location.hash = 'type=' + this.type + '&p='+ this.page;
+			// }
+			
+			window.onhashchange = ()=>{
+				//当hash改变的时候  渲染对应的数据
+				this.change;
+				
+				// console.log(this.change)
+			}
+
+			
+				
+		},
+		//计算属性
+		computed:{
+			change(){
+				//获取到当前的hash值
+				let a = window.location.hash.split('=');
+				//属性
+				let type = a[1].split('&')[0];
+				//页码
+				let page = a[2];
+				//将获取到的hash值 赋值给 this.page  this.type  方便使用 
+				this.page = page;
+				this.type = type;
+
+				//这里得到了总页数
+				this.pagecon = Math.ceil(this.arr[this.type].text.length / this.size);
+				// 根据页数 将分页出来的数据返回出去
+				return this.arr[this.type].text.slice((this.page-1)*this.size,this.page*this.size)
+			}
+		}
+	});
+
+	
+</script>
+</body>
+</html>

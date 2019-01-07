@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    html,body{
+		    	width: 100%;
+		    	height: 100%;
+		    	margin: 0;
+		    }
+		    body{
+		    	background: url(img/zpbg.png) no-repeat center center;
+		    	background-size: cover;
+		    	display: flex;
+		    	color:#b6bdcf;
+		    }
+		    ul,li{
+		    	margin: 0;
+		    	padding: 0;
+		    	list-style: none;
+		    }
+		    dl,dd{
+		    	margin: 0;
+		    	padding: 0;
+		    }
+		    p{
+		    	margin: 0;
+		    }
+		    a{
+		    	text-decoration: none;
+		    	color:#b6bdcf;
+		    }
+		    #content{
+		    	width: 650px;
+		    	height: 460px;
+		    	border-radius: 10px;
+		    	border: 1px solid #30343f;
+		    	margin: auto;
+		    	background:  no-repeat 25px 25px #252934;
+		    	box-sizing: border-box;
+		    	padding: 84px 25px 0px;
+		    	position: relative;
+		    }
+		    #rightTop{
+		    	position: absolute;
+		    	right: 0;
+		    	top: 0;
+		    	width: 285px;
+		    }
+		    #rightTop a{
+		    	float: left;
+		    	line-height: 80px;
+		    	margin-right: 34px;
+		    	font-size: 14px;
+		    }
+		    #rightTop a:nth-of-type(2){
+		    	border: 1px solid #ff2c4f;
+		    	border-radius: 28px;
+		    	width: 110px;
+		    	height: 28px;
+		    	text-align: center;
+		    	color: #ff2c4f;
+		    	line-height: 28px;
+		    	margin-top: 23px;
+		    }
+		    #rightTop a:nth-of-type(1):hover{
+		    	color:#ff2c4f;
+		    }
+		    #rightTop a:nth-of-type(2):hover{
+		    	background-color: #ff2c4f;
+		    	color: #000;
+		    }
+		    #title{
+		    	border-bottom: 1px dashed #303642;
+		    	height: 77px;
+		    }
+		    #title p{
+		    	font: 24px/38px "微软雅黑";
+		    }
+		    .simple{
+		    	font: 14px/30px "微软雅黑";
+		    }
+		    .simple span{
+		    	width: 20px;
+		    	display: inline-block;
+		    	text-align: center;	
+		    }
+		    .simple time{
+		    	color: #5c6675;
+		    	float: right;
+		    	width: 100px;
+		    	font: 12px/30px "微软雅黑";
+		    }
+		    #content dl{
+		    	margin-top: 13px;
+		    }
+		    #content dt{
+		    	font: 16px/27px "微软雅黑";
+		    }
+		    #content dd{
+		    	font: 14px/25px "微软雅黑";
+		    	color: #677282;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<div id="rightTop">
+				<a id="a" :href="hash" class="goback">&lt;&nbsp;返回招聘列表</a>
+				<a href="javascript:;">投个简历</a>
+			</div>
+			<div id="title">
+				<!-- {{con}} -->
+				<p>{{con.zw}}</p>
+				<div class="simple">
+					{{con.dy}}
+					<span>/</span>
+					{{con.dd}}
+					<span>/</span>
+					经验{{con.jy}}
+					<span>/</span>
+					{{con.xl}}
+					<span>/</span>
+					{{con.rs}}名 
+					<time>{{con.sj[0]}}-{{con.sj[1]}}-{{con.sj[2]}}</time>
+				</div>
+			</div>
+			<div id="bottom">
+					<dl v-for="(val,key) in con.info">
+						<dt>{{val.t}}</dt>
+						<dd v-for="(v1,k1) in val.l">{{v1}}</dd>
+					</dl>
+			</div>
+			
+		</div>
+<script src="js/data.js"></script>
+<script src="./vue.js"></script>
+<script>
+	new  Vue({
+		el:'#content',
+		data:{
+			arr:data,
+			type:'',
+			page:'',
+			index:'',
+			hash:'',
+			
+		},
+		created(){
+			//找到最后一个&符号的位置
+			let b = window.location.hash.lastIndexOf('&')
+			this.hash = 'list.html' + window.location.hash.substring(0,b);
+			
+			let a = window.location.hash.split('=');
+			this.type = a[1].split('&')[0];
+			this.page = a[2].split('&')[0];
+			this.index = a[3];
+		},
+		computed:{
+			con(){
+				return this.arr[this.type].text[this.index -1];
+				// console.log(this.arr[this.type].text)
+			}
+		}
+	});
+
+</script>
+</body>
+</html>
